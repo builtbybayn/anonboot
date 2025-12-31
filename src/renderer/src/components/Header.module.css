@@ -3,8 +3,8 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: #0c0d14; /* Header color */
-  border-bottom: 1px solid var(--color-border-subtle);
+  background-image: linear-gradient(to bottom, #0c0d14, #0a0b12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition:
     height 0.3s ease,
     background-color 0.3s;
@@ -31,24 +31,13 @@
   gap: 8px; /* Gap between Undo and Redo */
 }
 
-/* --- Center Cluster (Logo & Mode) --- */
+/* --- Center Cluster (Logo ONLY) --- */
 .centerCluster {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-self: center;
   justify-content: center;
   transition: all 0.3s ease;
-}
-
-/* Layout adjustments for expanded vs collapsed */
-.expanded .centerCluster {
-  gap: 8px; /* Logo <-> Pill gap */
-}
-
-.collapsed .centerCluster {
-  flex-direction: row; /* Side-by-side in compact mode? */
-  gap: 16px;
 }
 
 .logoContainer {
@@ -56,6 +45,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  padding: 0 24px;
 }
 
 .textLogo {
@@ -63,23 +53,105 @@
   color: #6e8dff;
   font-weight: 700;
   letter-spacing: 0.5px;
-  /* Spec: clamp(32, 4vw, 44) - roughly matching the image height logic but for font-size */
-  font-size: clamp(24px, 4vw, 32px);
+  font-size: clamp(32px, 6vw, 52px);
   line-height: 1;
   transition: font-size 0.3s ease;
   user-select: none;
+  text-shadow: 0 0 12px rgba(64, 105, 253, 0.15);
 }
 
 .collapsed .textLogo {
-  font-size: 20px; /* Smaller in collapsed */
+  font-size: 32px; /* Bigger in collapsed than before */
 }
 
-/* --- Right Cluster (Status & Refresh) --- */
+/* --- Right Cluster (Status & Refresh & Mode) --- */
 .rightCluster {
   display: flex;
   align-items: center;
   justify-self: end;
   gap: 8px; /* Gap between Status and Refresh */
+}
+
+/* Progressive Disclosure Logic */
+
+/* Default (Small Mobile): Hamburger shows everything, Inline shows nothing */
+.inlineMode {
+  display: none;
+}
+.inlineRevert {
+  display: none;
+}
+.hamburgerMenu {
+  display: block;
+}
+
+/* Menu Items Visibility (Mobile) */
+.menuItemMode {
+  display: block;
+  width: 100%;
+}
+.menuItemRevert {
+  display: block;
+  width: 100%;
+}
+
+/* Medium Breakpoint (Show Mode Inline, Revert in Menu) */
+@media (min-width: 600px) {
+  .inlineMode {
+    display: block;
+  }
+  .inlineRevert {
+    display: none;
+  }
+  .hamburgerMenu {
+    display: block;
+  }
+
+  /* Inside Menu */
+  .menuItemMode {
+    display: none; /* Mode is inline now */
+  }
+  .menuItemRevert {
+    display: block;
+  }
+}
+
+/* Large Breakpoint (Show All Inline, Hide Menu) */
+@media (min-width: 820px) {
+  .inlineMode {
+    display: block;
+  }
+  .inlineRevert {
+    display: block;
+  }
+  .hamburgerMenu {
+    display: none;
+  }
+}
+
+.menuItem {
+  background: transparent;
+  border: none;
+  color: #DCDCDC;
+  padding: 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: 
+    background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 140ms ease;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  background-color: #181921;
+  color: #FFFFFF;
 }
 
 .statusContainer {
@@ -102,16 +174,12 @@
   justify-content: center;
   width: 32px; /* Button size */
   height: 32px;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: background-color 0.2s;
 }
 
 .iconBtn:hover {
-  /* Spec doesn't explicitly ask for bg change, but icon color change. 
-     However, standard UI often has subtle bg hover. 
-     We'll follow: "Icon/ button color on hover: #DCDCDC".
-     The Icons themselves will handle color transition via class.
-  */
+  background-color: rgba(255, 255, 255, 0.07);
 }
 
 .icon {

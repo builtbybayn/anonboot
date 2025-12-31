@@ -12,7 +12,6 @@ const api = {
   getState: () => ipcRenderer.invoke('app:getState'),
   toggleSetting: (category, id, value) =>
     ipcRenderer.invoke('app:toggleSetting', category, id, value),
-  detectSetting: (category, id) => ipcRenderer.invoke('app:detectSetting', category, id),
   undo: () => ipcRenderer.invoke('app:undo'),
   redo: () => ipcRenderer.invoke('app:redo'),
   getHistoryCounts: () => ipcRenderer.invoke('app:getHistoryCounts')

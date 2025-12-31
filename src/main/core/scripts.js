@@ -81,21 +81,7 @@ export async function applyAll() {
   await applyAllLocationRegistry()
 }
 
-export async function revertAll() {
-  await revertAllService()
-  await revertAllRegistry()
-  await revertAllTasks()
-  await revertAllInterfaces()
-  await revertFlushDnsRegular()
-  await revertDoh()
-  await revertDohHardening()
-  await revertAllFirewallEndpoints()
-  await revertAllDomains()
-  await revertDevicesBoth()
-  await revertAllDeviceRegistry()
-  await revertAllLocationServices()
-  await revertAllLocationRegistry()
-}
+
 
 //detect: Modified to support skipping write for parallel execution
 async function detect(serviceName, scriptPath, captureFile, args = [], writeToDisk = true) {
@@ -436,15 +422,14 @@ async function applyAllLocationRegistry() {
   }
 }
 
-/* Revert API - Unchanged */
+/* Revert API - Refactored for Parallel Execution */
 export async function revertService(svc) {
   await revert(svc, paths.services.revert, ['-ServiceName', svc])
 }
 
 async function revertAllService() {
-  for (const svc of listOfServices) {
-    await revertService(svc)
-  }
+  const promises = listOfServices.map((svc) => revertService(svc))
+  return Promise.allSettled(promises)
 }
 
 export async function revertRegistry(reg) {
@@ -453,9 +438,8 @@ export async function revertRegistry(reg) {
 }
 
 async function revertAllRegistry() {
-  for (const reg of listOfRegistry) {
-    await revertRegistry(reg)
-  }
+  const promises = listOfRegistry.map((reg) => revertRegistry(reg))
+  return Promise.allSettled(promises)
 }
 
 export async function revertTask(task) {
@@ -463,9 +447,8 @@ export async function revertTask(task) {
 }
 
 async function revertAllTasks() {
-  for (const task of listOfScheduledTasks) {
-    await revertTask(task)
-  }
+  const promises = listOfScheduledTasks.map((task) => revertTask(task))
+  return Promise.allSettled(promises)
 }
 
 export async function revertInterface(inter) {
@@ -473,9 +456,8 @@ export async function revertInterface(inter) {
 }
 
 async function revertAllInterfaces() {
-  for (const inter of listOfDNSInterfaces) {
-    await revertInterface(inter)
-  }
+  const promises = listOfDNSInterfaces.map((inter) => revertInterface(inter))
+  return Promise.allSettled(promises)
 }
 
 async function revertFlushDnsRegular() {
@@ -495,9 +477,8 @@ export async function revertFirewallEndpoint(endpoint) {
 }
 
 async function revertAllFirewallEndpoints() {
-  for (const endpoint of listOfFirewallEndpoints) {
-    await revertFirewallEndpoint(endpoint)
-  }
+  const promises = listOfFirewallEndpoints.map((endpoint) => revertFirewallEndpoint(endpoint))
+  return Promise.allSettled(promises)
 }
 
 export async function revertDomain(domain) {
@@ -505,9 +486,8 @@ export async function revertDomain(domain) {
 }
 
 async function revertAllDomains() {
-  for (const domain of listOfDomainsForHosts) {
-    await revertDomain(domain)
-  }
+  const promises = listOfDomainsForHosts.map((domain) => revertDomain(domain))
+  return Promise.allSettled(promises)
 }
 
 async function revertDevicesBoth() {
@@ -524,9 +504,8 @@ export async function revertDeviceRegistry(reg) {
 }
 
 async function revertAllDeviceRegistry() {
-  for (const reg of registryDevices) {
-    await revertDeviceRegistry(reg)
-  }
+  const promises = registryDevices.map((reg) => revertDeviceRegistry(reg))
+  return Promise.allSettled(promises)
 }
 
 async function revertLocationService(svc) {
@@ -534,9 +513,8 @@ async function revertLocationService(svc) {
 }
 
 async function revertAllLocationServices() {
-  for (const svc of locationSettings.services) {
-    await revertLocationService(svc)
-  }
+  const promises = locationSettings.services.map((svc) => revertLocationService(svc))
+  return Promise.allSettled(promises)
 }
 
 export async function revertLocationRegistry(reg) {
@@ -545,7 +523,27 @@ export async function revertLocationRegistry(reg) {
 }
 
 async function revertAllLocationRegistry() {
-  for (const reg of locationSettings.registry) {
-    await revertLocationRegistry(reg)
-  }
+  const promises = locationSettings.registry.map((reg) => revertLocationRegistry(reg))
+  return Promise.allSettled(promises)
+}
+
+export async function revertAll() {
+  console.log('Starting parallel revert...')
+  const results = await Promise.allSettled([
+    revertAllService(),
+    revertAllRegistry(),
+    revertAllTasks(),
+    revertAllInterfaces(),
+    revertFlushDnsRegular(), // Single async
+    revertDoh(),             // Single async
+    revertDohHardening(),    // Single async
+    revertAllFirewallEndpoints(),
+    revertAllDomains(),
+    revertDevicesBoth(),     // Single async
+    revertAllDeviceRegistry(),
+    revertAllLocationServices(),
+    revertAllLocationRegistry()
+  ])
+  console.log('Parallel revert complete.')
+  return results
 }

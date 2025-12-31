@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './ModeSelector.module.css'
-import { ChevronIcon, MenuIcon } from './Icons'
+import { ChevronIcon } from './Icons'
 
 const ModeSelector = ({ currentMode, setMode, variant = 'default' }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +14,10 @@ const ModeSelector = ({ currentMode, setMode, variant = 'default' }) => {
 
   const currentLabel = modes.find((m) => m.id === currentMode)?.label || 'Custom'
 
-  const toggleOpen = () => setIsOpen(!isOpen)
+  const toggleOpen = (e) => {
+    e.stopPropagation()
+    setIsOpen(!isOpen)
+  }
 
   const handleSelect = (id) => {
     setMode(id)
@@ -28,8 +31,6 @@ const ModeSelector = ({ currentMode, setMode, variant = 'default' }) => {
         setIsOpen(false)
       }
     }
-
-    // Esc key to close
     const handleEsc = (e) => {
       if (e.key === 'Escape') setIsOpen(false)
     }
@@ -45,24 +46,28 @@ const ModeSelector = ({ currentMode, setMode, variant = 'default' }) => {
     }
   }, [isOpen])
 
-  if (variant === 'hamburger') {
+  if (variant === 'submenu') {
     return (
-      <div className={styles.container} ref={containerRef}>
-        <button
-          className={`${styles.hamburgerBtn} ${isOpen ? styles.active : ''}`}
+      <div className={styles.submenuContainer} ref={containerRef}>
+        <button 
+          className={`${styles.menuItem} ${styles.submenuTrigger} ${isOpen ? styles.active : ''}`}
           onClick={toggleOpen}
-          aria-label="Mode Menu"
         >
-          <MenuIcon className={styles.icon} />
+          <span>Mode: {currentLabel}</span>
+          <ChevronIcon className={`${styles.chevronSide} ${isOpen ? styles.open : ''}`} />
         </button>
 
-        <div className={`${styles.dropdownMenuWrapper} ${styles.dropdownMenuRight} ${isOpen ? styles.open : ''}`}>
-          <div className={styles.dropdownMenuInner}>
+        {/* Side Menu */}
+        <div className={`${styles.sideMenuWrapper} ${isOpen ? styles.open : ''}`}>
+           <div className={styles.dropdownMenuInner}>
             {modes.map((mode) => (
               <button
                 key={mode.id}
                 className={`${styles.menuItem} ${currentMode === mode.id ? styles.active : ''}`}
-                onClick={() => handleSelect(mode.id)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleSelect(mode.id)
+                }}
               >
                 {mode.label}
               </button>
@@ -73,6 +78,7 @@ const ModeSelector = ({ currentMode, setMode, variant = 'default' }) => {
     )
   }
 
+  // Default Inline Variant
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.selectorBox} onClick={toggleOpen}>

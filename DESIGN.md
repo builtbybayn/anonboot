@@ -167,6 +167,8 @@ large: 24px
 | Icon glyph                | Visual size      | 16                 | px    |
 | Icon spacing              | Horizontal gap   | 8                  | px    |
 
+The logo should have 24px of horizontal padding, it needs to have breathing room. 
+
 ### ConfigItem spacing and sizing
 
 ConfigItems are full-width rows.

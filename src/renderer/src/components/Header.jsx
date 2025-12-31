@@ -3,6 +3,8 @@ import styles from './Header.module.css'
 import checkmarkIcon from '../assets/check-mark.svg'
 import { UndoIcon, RedoIcon, RefreshIcon, SpinnerIcon } from './Icons'
 import ModeSelector from './ModeSelector'
+import RevertButton from './RevertButton'
+import HamburgerMenu from './HamburgerMenu'
 
 const Header = ({
   currentMode,
@@ -12,6 +14,7 @@ const Header = ({
   onRefresh,
   onUndo,
   onRedo,
+  onRevertAll,
   canUndo,
   canRedo
 }) => {
@@ -65,15 +68,14 @@ const Header = ({
         </button>
       </div>
 
-      {/* Center Cluster: Logo & Mode Selector */}
+      {/* Center Cluster: Logo ONLY */}
       <div className={styles.centerCluster}>
         <div className={styles.logoContainer}>
           <span className={styles.textLogo}>anonBOOT</span>
         </div>
-        {!isCollapsed && <ModeSelector currentMode={currentMode} setMode={setMode} />}
       </div>
 
-      {/* Right Cluster: Status & Refresh */}
+      {/* Right Cluster: Status & Refresh & Actions */}
       <div className={styles.rightCluster}>
         <div
           className={styles.statusContainer}
@@ -99,9 +101,42 @@ const Header = ({
           <RefreshIcon className={styles.icon} />
         </button>
 
-        {isCollapsed && (
-          <ModeSelector currentMode={currentMode} setMode={setMode} variant="hamburger" />
-        )}
+        {/* Action Group: Mode -> Revert -> Hamburger */}
+        
+        {/* Inline Mode (Collapses first) */}
+        <div className={styles.inlineMode}>
+          <ModeSelector currentMode={currentMode} setMode={setMode} />
+        </div>
+
+        {/* Inline Revert (Collapses second, kept visible longer) */}
+        <div className={styles.inlineRevert}>
+          {/* RevertButton likely needs disabled prop if supported, or wrap in div/style */}
+          <div style={{ opacity: isLoading ? 0.5 : 1, pointerEvents: isLoading ? 'none' : 'auto' }}>
+            <RevertButton onRevert={onRevertAll} />
+          </div>
+        </div>
+
+        {/* Hamburger (Appears when any item collapses) */}
+        <div className={styles.hamburgerMenu}>
+          <HamburgerMenu>
+            {/* Menu Mode (Visible when inline Mode hidden) */}
+            <div className={styles.menuItemMode}>
+              <ModeSelector currentMode={currentMode} setMode={setMode} variant="submenu" />
+            </div>
+            
+            {/* Menu Revert (Visible when inline Revert hidden) */}
+            <div className={styles.menuItemRevert}>
+               <button 
+                className={styles.menuItem} 
+                onClick={onRevertAll}
+                disabled={isLoading}
+                style={{ opacity: isLoading ? 0.5 : 1, cursor: isLoading ? 'default' : 'pointer' }}
+               >
+                Revert All
+              </button>
+            </div>
+          </HamburgerMenu>
+        </div>
       </div>
     </header>
   )

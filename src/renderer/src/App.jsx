@@ -263,6 +263,19 @@ function App() {
     }
   }
 
+  const handleRevertAll = async () => {
+    if (pendingRequests > 0) return
+    setPendingRequests((prev) => prev + 1)
+    try {
+      await window.api.revertAll()
+      await loadState(true)
+    } catch (error) {
+      console.error('Revert All failed:', error)
+    } finally {
+      setPendingRequests((prev) => Math.max(0, prev - 1))
+    }
+  }
+
   const handleModeChange = async (newMode) => {
     if (newMode === 'custom') {
       setMode('custom')
@@ -376,6 +389,7 @@ function App() {
         onRefresh={handleRefresh}
         onUndo={handleUndo}
         onRedo={handleRedo}
+        onRevertAll={handleRevertAll}
         canUndo={historyCounts.undo > 0}
         canRedo={historyCounts.redo > 0}
       />

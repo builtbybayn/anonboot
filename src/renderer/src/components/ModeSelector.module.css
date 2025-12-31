@@ -3,13 +3,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 101; /* Above other content */
+  z-index: 101;
 }
 
 .selectorBox {
   display: flex;
   align-items: center;
-  background-color: #12131A; /* var(--color-bg-row) */
+  background-color: #12131A;
   border-radius: 12px;
   padding: 8px 12px;
   cursor: pointer;
@@ -19,7 +19,7 @@
 }
 
 .selectorBox:hover {
-  background-color: #181921; /* var(--color-bg-row-hover) */
+  background-color: #181921;
 }
 
 .selectorBox:hover .chevron {
@@ -32,6 +32,7 @@
   font-size: 14px;
   margin-right: 8px; /* Gap between text and chevron */
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .modeName {
@@ -41,24 +42,23 @@
 .chevron {
   width: 18px;
   height: 18px;
-  color: #4B4C53; /* var(--color-icon-base) */
-  transform: rotate(180deg); /* Default point down */
+  color: #4B4C53;
+  transform: rotate(180deg);
   transition: 
     transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), 
     color 0.16s ease;
 }
 
 .chevron.open {
-  transform: rotate(0deg); /* Point up when open */
+  transform: rotate(0deg);
 }
 
-/* Dropdown Animation Wrapper */
 .dropdownMenuWrapper {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%; /* Constrained to button width */
-  margin-top: 8px; /* Spacing from box */
+  width: 100%;
+  margin-top: 8px;
   
   display: grid;
   grid-template-rows: 0fr;
@@ -69,13 +69,13 @@
     opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
   
-  background-color: #12131A; /* var(--color-bg-row) */
+  background-color: #12131A;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 100;
   overflow: hidden;
   border: 1px solid transparent;
-  pointer-events: none; /* Prevent clicks when closed */
+  pointer-events: none;
 }
 
 .dropdownMenuWrapper.open {
@@ -90,22 +90,21 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 0; /* Flush items like ConfigItems */
+  padding: 0;
 }
 
-/* Menu Items - Styled like ConfigItem rows */
 .menuItem {
   background: transparent;
   border: none;
-  color: #DCDCDC; /* var(--color-text-secondary) */
-  padding: 0 16px; /* Matching ConfigItem horizontal padding */
-  height: 48px; /* Matching child config item height */
+  color: #DCDCDC;
+  padding: 0 16px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   cursor: pointer;
-  font-size: 16px; /* Matching child config item font size */
+  font-size: 16px;
   font-weight: 500;
   font-family: inherit;
   transition: 
@@ -115,7 +114,7 @@
 }
 
 .menuItem:hover {
-  background-color: #181921; /* var(--color-bg-row-hover) */
+  background-color: #181921;
   color: #FFFFFF;
 }
 
@@ -125,33 +124,63 @@
   font-weight: 600;
 }
 
-/* Hamburger Variant */
-.hamburgerBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+/* Submenu / Cascading Variant */
+.submenuContainer {
+  position: relative;
+  width: 100%;
+}
+
+.submenuTrigger {
+  justify-content: space-between; /* Text left, Chevron right */
+  width: 100%;
+}
+
+.chevronSide {
+  width: 18px;
+  height: 18px;
   color: #4B4C53;
+  transform: rotate(-90deg); /* Point right */
+  transition: transform 180ms ease;
 }
 
-.hamburgerBtn:hover {
-  color: #DCDCDC;
+.chevronSide.open {
+  transform: rotate(90deg); /* Point down? Or keep pointing right and slide menu? */
+  /* If cascading to the side, maybe keep right. If expanding down in-place (mobile style), point down. */
+  /* Spec said "cascading submenus similar to Windows Explorer". Explorer menus usually pop to the side. */
+  /* But on Mobile width, side pop might go off screen. 
+     Since "Hamburger" is for narrow widths, a side popout to the LEFT of the menu is best. */
+  /* Wait, the menu is aligned Right. So side popout must be to the Left. */
 }
 
-.hamburgerBtn.active {
-  color: #DCDCDC;
+/* Let's try cascading to the LEFT */
+.sideMenuWrapper {
+  position: absolute;
+  top: 0;
+  right: 100%; /* To the left of the trigger */
+  width: 180px;
+  margin-right: 8px;
+  
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateX(10px); /* Slide in from right */
+  transition: 
+    grid-template-rows 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+  
+  background-color: #12131A;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 102; /* Higher than parent menu */
+  overflow: hidden;
+  border: 1px solid #181921;
+  pointer-events: none;
 }
 
-/* Right aligned menu for hamburger */
-.dropdownMenuRight {
-  left: auto;
-  right: 0;
-  width: 150px; /* Fixed width for hamburger menu */
+.sideMenuWrapper.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
