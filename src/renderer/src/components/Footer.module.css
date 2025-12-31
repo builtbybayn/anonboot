@@ -1,0 +1,37 @@
+.footer {
+  width: 100%;
+  height: auto; /* Content-driven */
+  padding: 18px 0; /* Vertical padding only to allow full width logo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: auto;
+  overflow: visible;
+}
+
+.divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent 100%
+  );
+  margin-bottom: 18px; /* Spacing between divider and logo */
+}
+
+.watermark {
+  width: 100%;
+  height: auto;
+  opacity: 1.0;
+  /* Removed grayscale to show blue color, kept brightness for visibility */
+  filter: brightness(1.1); 
+  pointer-events: none;
+  user-select: none;
+  display: block;
+}

@@ -1,9 +1,12 @@
+import styles from './Footer.module.css'
+import footerLogo from '../assets/anonboot-vector-lightblue-min.svg'
+
 const Footer = () => {
   return (
-    <div className="anonboot-footer-minimal">
-      <div className="footer-line"></div>
-      <div className="footer-branding">anonBOOT</div>
-    </div>
+    <footer className={styles.footer}>
+      <div className={styles.divider}></div>
+      <img src={footerLogo} className={styles.watermark} alt="" />
+    </footer>
   )
 }
 
