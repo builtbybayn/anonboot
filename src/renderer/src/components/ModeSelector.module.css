@@ -1,0 +1,157 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101; /* Above other content */
+}
+
+.selectorBox {
+  display: flex;
+  align-items: center;
+  background-color: #12131A; /* var(--color-bg-row) */
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.16s ease-out;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.selectorBox:hover {
+  background-color: #181921; /* var(--color-bg-row-hover) */
+}
+
+.selectorBox:hover .chevron {
+  color: #DCDCDC;
+}
+
+.label {
+  color: #DCDCDC;
+  font-family: inherit;
+  font-size: 14px;
+  margin-right: 8px; /* Gap between text and chevron */
+  font-weight: 500;
+}
+
+.modeName {
+  color: #FFFFFF;
+}
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  color: #4B4C53; /* var(--color-icon-base) */
+  transform: rotate(180deg); /* Default point down */
+  transition: 
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), 
+    color 0.16s ease;
+}
+
+.chevron.open {
+  transform: rotate(0deg); /* Point up when open */
+}
+
+/* Dropdown Animation Wrapper */
+.dropdownMenuWrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%; /* Constrained to button width */
+  margin-top: 8px; /* Spacing from box */
+  
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: 
+    grid-template-rows 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  
+  background-color: #12131A; /* var(--color-bg-row) */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  overflow: hidden;
+  border: 1px solid transparent;
+  pointer-events: none; /* Prevent clicks when closed */
+}
+
+.dropdownMenuWrapper.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  border-color: #181921;
+}
+
+.dropdownMenuInner {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Flush items like ConfigItems */
+}
+
+/* Menu Items - Styled like ConfigItem rows */
+.menuItem {
+  background: transparent;
+  border: none;
+  color: #DCDCDC; /* var(--color-text-secondary) */
+  padding: 0 16px; /* Matching ConfigItem horizontal padding */
+  height: 48px; /* Matching child config item height */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px; /* Matching child config item font size */
+  font-weight: 500;
+  font-family: inherit;
+  transition: 
+    background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 140ms ease;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  background-color: #181921; /* var(--color-bg-row-hover) */
+  color: #FFFFFF;
+}
+
+.menuItem.active {
+  color: #FFFFFF;
+  background-color: #181921;
+  font-weight: 600;
+}
+
+/* Hamburger Variant */
+.hamburgerBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: #4B4C53;
+}
+
+.hamburgerBtn:hover {
+  color: #DCDCDC;
+}
+
+.hamburgerBtn.active {
+  color: #DCDCDC;
+}
+
+/* Right aligned menu for hamburger */
+.dropdownMenuRight {
+  left: auto;
+  right: 0;
+  width: 150px; /* Fixed width for hamburger menu */
+}

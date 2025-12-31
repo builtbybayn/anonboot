@@ -1,0 +1,175 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: #0c0d14; /* Header color */
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition:
+    height 0.3s ease,
+    background-color 0.3s;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Left, Center, Right */
+  align-items: center;
+  padding: 0 16px; /* Side padding 16px */
+  box-sizing: border-box;
+}
+
+.expanded {
+  height: 96px; /* Spec */
+}
+
+.collapsed {
+  height: 64px; /* Spec */
+}
+
+/* --- Left Cluster (Undo/Redo) --- */
+.leftCluster {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  gap: 8px; /* Gap between Undo and Redo */
+}
+
+/* --- Center Cluster (Logo & Mode) --- */
+.centerCluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Layout adjustments for expanded vs collapsed */
+.expanded .centerCluster {
+  gap: 8px; /* Logo <-> Pill gap */
+}
+
+.collapsed .centerCluster {
+  flex-direction: row; /* Side-by-side in compact mode? */
+  gap: 16px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  /* Spec: clamp(32, 4vw, 44) */
+  height: clamp(32px, 4vw, 44px);
+  width: auto;
+  transition: height 0.3s ease;
+}
+
+.collapsed .logo {
+  height: 32px; /* Smaller in collapsed */
+}
+
+/* --- Right Cluster (Status & Refresh) --- */
+.rightCluster {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 8px; /* Gap between Status and Refresh */
+}
+
+.statusContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; /* Consistent hit area? Or just visual? Spec says Status icon sizing 18-20px */
+  height: 32px;
+}
+
+/* --- Buttons --- */
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; /* Button size */
+  height: 32px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.iconBtn:hover {
+  /* Spec doesn't explicitly ask for bg change, but icon color change. 
+     However, standard UI often has subtle bg hover. 
+     We'll follow: "Icon/ button color on hover: #DCDCDC".
+     The Icons themselves will handle color transition via class.
+  */
+}
+
+.icon {
+  width: 20px; /* Header icons 20px */
+  height: 20px;
+  color: #4b4c53; /* Base color */
+  transition: color 0.2s;
+}
+
+.iconBtn:hover .icon {
+  color: #dcdcdc; /* Hover color */
+}
+
+.refreshing .icon {
+  animation: spin 1s linear infinite;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  color: #dcdcdc; /* Spec: Loading spinner color #DCDCDC */
+}
+
+.checkmark {
+  width: 20px; /* Match header icon scale */
+  height: 20px;
+  /* Filter to match DCDCDC if it's an image? 
+     The image is likely white or colored. 
+     If it's an SVG loaded as img, we can't style color easily unless using filter.
+     Assuming the checkmark asset is appropriate. 
+     If needed, filter: invert(...) or brightness(...) could be used.
+     Spec says "Color: #DCDCDC".
+  */
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  top: 100%;
+  right: 0; /* Align right for right cluster */
+  margin-top: 8px;
+  background: #292f49; /* Tooltip message background */
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 200;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeIn 0.2s forwards;
+  border: 1px solid #12131a; /* Tooltip message outline */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

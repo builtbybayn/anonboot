@@ -1,0 +1,83 @@
+:root {
+  /* === NEW DESIGN SYSTEM === */
+
+  /* Colors */
+  --color-bg-app: #0c0d14;
+  --color-bg-panel: #12131a;
+  --color-bg-row: #12131a;
+  --color-bg-row-hover: #181921;
+  --color-bg-tooltip: #292f49;
+  --color-bg-dropdown: #171923;
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #dcdcdc;
+
+  /* UI Elements */
+  --color-icon-base: #4b4c53;
+  --color-icon-hover: #dcdcdc;
+
+  /* Toggle */
+  --color-toggle-thumb: #ffffff;
+  --color-toggle-disabled-bg: #4b4c53;
+  --color-toggle-disabled-bg-hover: #dcdcdc;
+  --color-toggle-enabled-bg: #4069fd;
+  --color-toggle-enabled-bg-hover: #6e8dff;
+
+  /* Tooltip */
+  --color-tooltip-border: #12131a;
+
+  /* Spacing */
+  --spacing-app-padding: 16px; /* Spec: Header horizontal padding 16px */
+  --spacing-row-height: 56px;
+  --spacing-child-row-height: 48px;
+  --spacing-row-padding: 16px;
+  --spacing-gap-small: 8px;
+  --spacing-row-radius: 0; /* Spec doesn't mention radius for rows, implies full width/flat or maybe I missed it? 
+                              "Row background/hover background spans left-to-right across the content area"
+                              Usually implies 0 or small radius. The existing had 12px.
+                              Let's stick to 0 or small if not specified, but "full-width" usually means 0 horizontally if it touches edges.
+                              However, "Row container width: 100%" inside a container with padding?
+                              "ConfigItems are full-width rows... spans left-to-right across the content area."
+                              I will set radius to 0 for now to match "full width" feel or keep small if preferred. 
+                              Actually, standard lists often have no radius. Let's remove radius for rows. */
+
+  /* Mappings */
+  --color-background: var(--color-bg-app);
+  --color-text: var(--color-text-primary);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

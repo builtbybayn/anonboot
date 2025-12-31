@@ -1,0 +1,122 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.track {
+  width: 44px;
+  height: 24px;
+  background-color: var(--color-toggle-disabled-bg);
+  border-radius: 999px;
+  position: relative;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* "inset 2px" usually means padding: 2px, but we can do it with positioning the thumb */
+}
+
+.thumb {
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-toggle-thumb);
+  border-radius: 999px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  /* Initial state: translateX(0) */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  /* We will use animation instead of transition for the overshoot effect */
+}
+
+/* Hover States */
+.container:hover .track {
+  background-color: var(--color-toggle-disabled-bg-hover);
+}
+
+.container:hover .input:checked + .track {
+  background-color: var(--color-toggle-enabled-bg-hover);
+}
+
+/* Checked State */
+.input:checked + .track {
+  background-color: var(--color-toggle-enabled-bg);
+}
+
+/* Animations */
+/* When becoming checked */
+.input:checked + .track .thumb {
+  animation: toggleOn 180ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* When becoming unchecked */
+.input:not(:checked) + .track .thumb {
+  animation: toggleOff 180ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Disabled State */
+.input:disabled + .track {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.container:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+/* Keyframes */
+/* Target is 20px translateX (44 - 20 - 2 - 2 = 20) */
+/* Overshoot is +2px => 22px */
+@keyframes toggleOn {
+  0% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(22px);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+/* Target is 0 */
+/* Overshoot is -2px */
+@keyframes toggleOff {
+  0% {
+    transform: translateX(20px);
+  }
+  80% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input:checked + .track .thumb,
+  .input:not(:checked) + .track .thumb {
+    animation: none;
+    transition: transform 0ms;
+  }
+
+  .input:checked + .track .thumb {
+    transform: translateX(20px);
+  }
+
+  .input:not(:checked) + .track .thumb {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,81 @@
+.item {
+  display: flex;
+  align-items: center;
+  height: var(--spacing-row-height); /* 56px */
+  padding: 0 var(--spacing-row-padding); /* 16px */
+  background-color: var(--color-bg-row);
+  border-radius: var(--spacing-row-radius);
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  cursor: pointer; /* Row is clickable for expansion */
+}
+
+.item:hover {
+  background-color: var(--color-bg-row-hover);
+}
+
+.childItem {
+  height: var(--spacing-child-row-height); /* 48px */
+  /* Child indentation rule: 16px padding + 24px indent = 40px visual start */
+  padding-left: calc(var(--spacing-row-padding) + 24px);
+}
+
+.childItem:hover {
+  background-color: var(--color-bg-row-hover);
+}
+
+.label {
+  font-size: 18px; /* Parent label size */
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-right: var(--spacing-gap-small);
+  line-height: 1.2;
+}
+
+.childItem .label {
+  font-size: 16px; /* Child label size */
+  color: var(--color-text-secondary);
+}
+
+.chevronBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: var(--spacing-gap-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 28px; /* Hit area */
+  height: 28px;
+}
+
+.chevronBtn.expanded {
+  transform: rotate(180deg);
+}
+
+.chevronIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: var(--color-icon-base);
+  transition:
+    color 0.2s ease,
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: rotate(180deg); /* Default point down */
+}
+
+.item:hover .chevronIcon {
+  color: var(--color-icon-hover);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.toggleWrapper {
+  display: flex;
+  align-items: center;
+  /* Toggle alignment right padding is handled by container padding-right */
+}

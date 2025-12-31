@@ -1,0 +1,464 @@
+{
+  "DiagTrack": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "RemoteAccess": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "RemoteRegistry": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "NetLogon": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "dmwappushservice": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "WdiSystemHost": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "WdiServiceHost": {
+    "startType": "Disabled",
+    "wasRunning": false
+  },
+  "AllowTelemetry": {
+    "valueType": null,
+    "name": "AllowTelemetry",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+    "keyExists": true
+  },
+  "Enabled": {
+    "valueType": "DWord",
+    "name": "Enabled",
+    "valueExists": true,
+    "valueData": 1,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+    "keyExists": true
+  },
+  "NumberOfSIUFInPeriod": {
+    "valueType": null,
+    "name": "NumberOfSIUFInPeriod",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKCU:SOFTWAREMicrosoftSiufRules",
+    "keyExists": false
+  },
+  "AllowCortana": {
+    "valueType": null,
+    "name": "AllowCortana",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search",
+    "keyExists": false
+  },
+  "TailoredExperiencesWithDiagnosticDataEnabled": {
+    "valueType": "DWord",
+    "name": "TailoredExperiencesWithDiagnosticDataEnabled",
+    "valueExists": true,
+    "valueData": 1,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+    "keyExists": true
+  },
+  "RestrictImplicitTextCollection": {
+    "valueType": "DWord",
+    "name": "RestrictImplicitTextCollection",
+    "valueExists": true,
+    "valueData": 0,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\InputPersonalization",
+    "keyExists": true
+  },
+  "RestrictImplicitInkCollection": {
+    "valueType": "DWord",
+    "name": "RestrictImplicitInkCollection",
+    "valueExists": true,
+    "valueData": 0,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\InputPersonalization",
+    "keyExists": true
+  },
+  "HarvestContacts": {
+    "valueType": "DWord",
+    "name": "HarvestContacts",
+    "valueExists": true,
+    "valueData": 1,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\InputPersonalization\\TrainedDataStore",
+    "keyExists": true
+  },
+  "DmClient": {
+    "exists": true,
+    "wasEnabled": true
+  },
+  "DmClientOnScenarioDownload": {
+    "exists": true,
+    "wasEnabled": true
+  },
+  "Consolidator": {
+    "exists": true,
+    "wasEnabled": true
+  },
+  "UsbCeip": {
+    "exists": true,
+    "wasEnabled": true
+  },
+  "QueueReporting": {
+    "exists": true,
+    "wasEnabled": true
+  },
+  "undefined": {
+    "usesDhcp": false,
+    "serverAddresses": [],
+    "exists": false
+  },
+  "Wi-Fi": {
+    "usesDhcp": false,
+    "serverAddresses": ["1.1.1.1", "9.9.9.9"],
+    "exists": true
+  },
+  "Ethernet": {
+    "usesDhcp": false,
+    "serverAddresses": ["150.110.1.2"],
+    "exists": true
+  },
+  "DoH": {
+    "cloudflare10Configured": true,
+    "cloudflare11Configured": true
+  },
+  "DoH-Hardening": {
+    "servers": [
+      {
+        "serverAddress": "149.112.112.112",
+        "dohTemplate": "https://dns.quad9.net/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "9.9.9.9",
+        "dohTemplate": "https://dns.quad9.net/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "8.8.8.8",
+        "dohTemplate": "https://dns.google/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "8.8.4.4",
+        "dohTemplate": "https://dns.google/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "1.1.1.1",
+        "dohTemplate": "https://cloudflare-dns.com/dns-query",
+        "autoUpgrade": true,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "1.0.0.1",
+        "dohTemplate": "https://cloudflare-dns.com/dns-query",
+        "autoUpgrade": true,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2001:4860:4860::8844",
+        "dohTemplate": "https://dns.google/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2001:4860:4860::8888",
+        "dohTemplate": "https://dns.google/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2606:4700:4700::1001",
+        "dohTemplate": "https://cloudflare-dns.com/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2606:4700:4700::1111",
+        "dohTemplate": "https://cloudflare-dns.com/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2620:fe::9",
+        "dohTemplate": "https://dns.quad9.net/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      },
+      {
+        "serverAddress": "2620:fe::fe",
+        "dohTemplate": "https://dns.quad9.net/dns-query",
+        "autoUpgrade": false,
+        "udpFallback": false
+      }
+    ]
+  },
+  "vortex.data.microsoft.com": {
+    "rawLine": null,
+    "domain": "vortex.data.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "settings-win.data.microsoft.com": {
+    "rawLine": null,
+    "domain": "settings-win.data.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "v10.events.data.microsoft.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "telemetry.microsoft.com": {
+    "rawLine": null,
+    "domain": "telemetry.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "watson.telemetry.microsoft.com": {
+    "rawLine": null,
+    "domain": "watson.telemetry.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "watson.microsoft.com": {
+    "rawLine": null,
+    "domain": "watson.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "oca.telemetry.microsoft.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "eu-v10.events.data.microsoft.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "us-v10.events.data.microsoft.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "adl.windows.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "ads.msn.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "adnexus.net": {
+    "exists": false,
+    "enabled": false
+  },
+  "adnxs.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "scorecardresearch.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "c.msn.com": {
+    "exists": false,
+    "enabled": false
+  },
+  "telecommand.telemetry.microsoft.com": {
+    "rawLine": null,
+    "domain": "telecommand.telemetry.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "vortex-win.data.microsoft.com": {
+    "rawLine": null,
+    "domain": "vortex-win.data.microsoft.com",
+    "ip": null,
+    "lineIndex": null,
+    "present": false
+  },
+  "Devices": [
+    {
+      "instanceId": "SWD\\MMDEVAPI\\{0.0.0.00000000}.{071811D0-A1CC-4018-92CC-D3D20BBE055C}",
+      "name": "Headset (Ryan's AirPods Pro #2 - Find My Hands-Free)",
+      "class": "AudioEndpoint",
+      "status": "Unknown",
+      "isCamera": false,
+      "isMicrophone": true
+    },
+    {
+      "instanceId": "USB\\VID_04F2&PID_B74F&MI_02\\7&1384440E&1&0002",
+      "name": "Integrated IR Camera",
+      "class": "Camera",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    },
+    {
+      "instanceId": "SWD\\SGDEVAPI\\95BAF7994FBBC795F6113547C5C21D65FEFC3DCBE3821740C354EB9C9B5CEFBE",
+      "name": "Lenovo Camera Group",
+      "class": "SoftwareDevice",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    },
+    {
+      "instanceId": "SWD\\DRIVERENUM\\MEP_CAMERA_COMPONENT&6&7FE8363&0",
+      "name": "Windows Studio Effects Camera",
+      "class": "SoftwareComponent",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    },
+    {
+      "instanceId": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{E69D2D5E-F84B-4ED9-8E5F-DC08CD185001}",
+      "name": "Headset (Ryan's AirPods Pro #2 - Find My)",
+      "class": "AudioEndpoint",
+      "status": "Unknown",
+      "isCamera": false,
+      "isMicrophone": true
+    },
+    {
+      "instanceId": "UEFI\\RES_{9F469AA0-B6F6-4421-B1E2-E0D74F50F9AB}\\0",
+      "name": "Camera Firmware",
+      "class": "Firmware",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    },
+    {
+      "instanceId": "USB\\VID_04F2&PID_B74F&MI_04\\7&1384440E&1&0004",
+      "name": "Camera DFU Device",
+      "class": "USBDevice",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    },
+    {
+      "instanceId": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{DF5308E8-187B-4CB9-923A-E1C0E4F19F75}",
+      "name": "Microphone Array (AMD Audio Device)",
+      "class": "AudioEndpoint",
+      "status": "OK",
+      "isCamera": false,
+      "isMicrophone": true
+    },
+    {
+      "instanceId": "USB\\VID_04F2&PID_B74F&MI_00\\7&1384440E&1&0000",
+      "name": "Integrated Camera",
+      "class": "Camera",
+      "status": "OK",
+      "isCamera": true,
+      "isMicrophone": false
+    }
+  ],
+  "lfsvc": {
+    "startType": "Manual",
+    "wasRunning": true
+  },
+  "SensorService": {
+    "startType": "Manual",
+    "wasRunning": true
+  },
+  "DisableWindowsLocationProvider": {
+    "valueType": null,
+    "name": "DisableWindowsLocationProvider",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors",
+    "keyExists": false
+  },
+  "DisableLocation": {
+    "valueType": null,
+    "name": "DisableLocation",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors",
+    "keyExists": false
+  },
+  "DisableSensors": {
+    "valueType": null,
+    "name": "DisableSensors",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors",
+    "keyExists": false
+  },
+  "Wsearch": {
+    "startType": "Automatic",
+    "wasRunning": true
+  },
+  "EnableActivityFeed": {
+    "valueType": null,
+    "name": "EnableActivityFeed",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+    "keyExists": true
+  },
+  "PublishUserActivities": {
+    "valueType": null,
+    "name": "PublishUserActivities",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+    "keyExists": true
+  },
+  "UploadUserActivities": {
+    "valueType": null,
+    "name": "UploadUserActivities",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+    "keyExists": true
+  },
+  "BingSearchEnabled": {
+    "valueType": null,
+    "name": "BingSearchEnabled",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search",
+    "keyExists": true
+  },
+  "CortanaConsent": {
+    "valueType": null,
+    "name": "CortanaConsent",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search",
+    "keyExists": true
+  },
+  "AllowCrossDeviceClipboard": {
+    "valueType": null,
+    "name": "AllowCrossDeviceClipboard",
+    "valueExists": false,
+    "valueData": null,
+    "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+    "keyExists": true
+  },
+  "Value": {
+    "valueType": "String",
+    "name": "Value",
+    "valueExists": true,
+    "valueData": "Allow",
+    "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone",
+    "keyExists": true
+  }
+}
