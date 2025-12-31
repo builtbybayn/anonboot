@@ -58,15 +58,20 @@
   transition: all 0.3s ease;
 }
 
-.logo {
-  /* Spec: clamp(32, 4vw, 44) */
-  height: clamp(32px, 4vw, 44px);
-  width: auto;
-  transition: height 0.3s ease;
+.textLogo {
+  font-family: 'PoppinsLogo', sans-serif;
+  color: #6e8dff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  /* Spec: clamp(32, 4vw, 44) - roughly matching the image height logic but for font-size */
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: 1;
+  transition: font-size 0.3s ease;
+  user-select: none;
 }
 
-.collapsed .logo {
-  height: 32px; /* Smaller in collapsed */
+.collapsed .textLogo {
+  font-size: 20px; /* Smaller in collapsed */
 }
 
 /* --- Right Cluster (Status & Refresh) --- */

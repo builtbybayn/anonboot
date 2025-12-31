@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './Header.module.css'
 import checkmarkIcon from '../assets/check-mark.svg'
-import logoIcon from '../assets/anonboot-white-vector-merged-min.svg'
 import { UndoIcon, RedoIcon, RefreshIcon, SpinnerIcon } from './Icons'
 import ModeSelector from './ModeSelector'
 
@@ -69,7 +68,7 @@ const Header = ({
       {/* Center Cluster: Logo & Mode Selector */}
       <div className={styles.centerCluster}>
         <div className={styles.logoContainer}>
-          <img src={logoIcon} className={styles.logo} alt="anonBOOT" />
+          <span className={styles.textLogo}>anonBOOT</span>
         </div>
         {!isCollapsed && <ModeSelector currentMode={currentMode} setMode={setMode} />}
       </div>

@@ -1,12 +1,18 @@
 @import './base.css';
 @import './components.css';
 
+@font-face {
+  font-family: 'PoppinsLogo';
+  src: url('./fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url('./wavy-lines.svg');
   background-size: cover;
   user-select: none;
   margin: 0;
@@ -50,7 +56,7 @@ code {
   flex: 1;
   overflow-y: auto;
   width: 100%;
-  padding: 20px 0; /* Vertical padding only, allow full width content */
+  padding: 0 0 20px 0; /* Top 0, Bottom 20px */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
