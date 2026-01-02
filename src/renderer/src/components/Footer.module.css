@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
   height: auto; /* Content-driven */
-  padding: 18px 0; /* Vertical padding only to allow full width logo */
+  padding: 16px 0 24px 0; /* Vertical padding */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,27 +10,83 @@
   box-sizing: border-box;
   margin-top: auto;
   overflow: visible;
+  gap: 16px;
 }
 
 .divider {
-  width: 60%;
+  width: calc(100% + 32px);
   height: 1px;
   background: linear-gradient(
-    90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.1) 20%, 
-    rgba(255, 255, 255, 0.1) 80%, 
+    90deg,
+    transparent 0%,
+    rgba(75, 76, 83, 0.4) 20%,
+    rgba(75, 76, 83, 0.4) 80%,
     transparent 100%
   );
-  margin-bottom: 18px; /* Spacing between divider and logo */
+  margin-bottom: 0px;
+}
+
+.centerGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  gap: 16px;
+}
+
+.linksRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 28px; /* Equal spacing, visually weighted */
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b4c53;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  transition: color 120ms ease;
+  cursor: pointer;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: #4b4c53;
+  transition: color 120ms ease;
+}
+
+/* Hover states */
+.link:hover {
+  color: #dcdcdc;
+}
+
+.link:hover .icon {
+  color: #dcdcdc;
+}
+
+/* Specific icon hover overrides */
+.heartLink:hover .icon {
+  color: #ff0000;
+}
+
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .watermark {
-  width: 100%;
-  height: auto;
-  opacity: 1.0;
-  /* Removed grayscale to show blue color, kept brightness for visibility */
-  filter: brightness(1.1); 
+  width: auto;
+  height: 24px; /* Adjust height to keep it subtle */
+  opacity: 0.3; /* Low opacity watermark */
+  /* If needed, apply filter to match "muted UI color" more precisely if the SVG itself isn't perfect */
   pointer-events: none;
   user-select: none;
   display: block;

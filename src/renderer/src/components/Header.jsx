@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './Header.module.css'
 import checkmarkIcon from '../assets/check-mark.svg'
+import logoIcon from '../assets/anonboot-logo-icon.svg'
 import { UndoIcon, RedoIcon, RefreshIcon, SpinnerIcon } from './Icons'
 import ModeSelector from './ModeSelector'
 import RevertButton from './RevertButton'
@@ -72,6 +73,7 @@ const Header = ({
       <div className={styles.centerCluster}>
         <div className={styles.logoContainer}>
           <span className={styles.textLogo}>anonBOOT</span>
+          <img src={logoIcon} className={styles.logoIcon} alt="" />
         </div>
       </div>
 
@@ -102,7 +104,7 @@ const Header = ({
         </button>
 
         {/* Action Group: Mode -> Revert -> Hamburger */}
-        
+
         {/* Inline Mode (Collapses first) */}
         <div className={styles.inlineMode}>
           <ModeSelector currentMode={currentMode} setMode={setMode} />
@@ -123,15 +125,15 @@ const Header = ({
             <div className={styles.menuItemMode}>
               <ModeSelector currentMode={currentMode} setMode={setMode} variant="submenu" />
             </div>
-            
+
             {/* Menu Revert (Visible when inline Revert hidden) */}
             <div className={styles.menuItemRevert}>
-               <button 
-                className={styles.menuItem} 
+              <button
+                className={styles.menuItem}
                 onClick={onRevertAll}
                 disabled={isLoading}
                 style={{ opacity: isLoading ? 0.5 : 1, cursor: isLoading ? 'default' : 'pointer' }}
-               >
+              >
                 Revert All
               </button>
             </div>

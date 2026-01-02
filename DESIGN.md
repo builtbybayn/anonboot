@@ -56,6 +56,26 @@ Toggle button enabled backgroud: #4069FD
 
 Toggle button enabled background on hover: #6E8DFF
 
+### Footer
+
+#### Links
+
+All link text color: #4B4C53
+
+All link text color on hover: #DCDCDC
+
+Github Icon color: #4B4C53
+
+Github Icon color on hover: #DCDCDC
+
+Heart Icon color (For support link): #4B4C53
+
+Heart Icon color on hover: #ff0000
+
+About icon color: #4B4C53
+
+About icon color on hover: #DCDCDC
+
 ## Assets
 
 _Images placed in `src/renderer/src/assets/`_
@@ -69,6 +89,12 @@ check-mark.svg: This should be used as the check mark signifying the data is up 
 undo-arrow and redo-arrow.svg: these should be used for the undo and redo feature.
 
 anonboot-white-vector-merged-min.svg: Use this for the logo
+
+heart.svg: used for footer
+
+github.svg: used for footer
+
+question-mark.svg: used for footer
 
 ## Motion
 
@@ -365,3 +391,75 @@ Replace the current segmented “Standard / Paranoid / Custom” selector with a
   - Paranoid
   - Custom
 - Selecting an item updates the current mode (existing logic) and closes menu.
+
+## Footer
+
+### Structure
+- Footer is rendered at the end of the scrollable content (not sticky).
+- Full-width container.
+- Footer height is content-driven and must expand to contain its contents.
+- Footer must never clip the wordmark or links.
+
+---
+
+### Divider Line
+- Render a decorative divider line at the top of the footer.
+- Height: 1px
+- Width: 45–50% of app width
+- Centered horizontally
+- Uses a horizontal gradient:
+  - transparent → subtle line color → transparent
+- Divider is non-interactive and purely visual.
+
+---
+
+### Footer Links
+- Render a single row of links directly below the divider line.
+- Links are horizontally centered.
+- Exactly three links, in this order:
+  1. GitHub (GitHub icon + text)
+  2. Support (heart icon + text)
+  3. About (question mark icon + text)
+- All links must have equal spacing and equal visual weight.
+- No link is emphasized by default.
+
+**Link Colors**
+- All link text idle color: `#4B4C53`
+- All link text hover color: `#DCDCDC`
+
+**Icon Colors**
+- GitHub icon idle color: `#4B4C53`
+- GitHub icon hover color: `#DCDCDC`
+
+- Heart icon (Support link):
+  - Idle color: `#4B4C53`
+  - Hover color: `#ff0000`
+
+- About icon idle color: `#4B4C53`
+- About icon hover color: `#DCDCDC`
+
+**Interaction Rules**
+- No underlines by default.
+- Hover state uses color transition only.
+- No scale, bounce, or animation effects.
+
+---
+
+### Footer Wordmark
+- Render the pixelated anonBOOT SVG wordmark below the footer links.
+- Horizontally centered.
+- Rendered as a low-opacity watermark.
+- Must never be clipped or cropped.
+- Footer height must expand naturally to contain the wordmark.
+
+**Visual Treatment**
+- Opacity: subtle and non-distracting.
+- Color: muted UI color (secondary text / icon base color).
+- Wordmark must feel like a baseplate/anchor, not a banner.
+
+---
+
+### Constraints
+- Footer contains no additional links or content.
+- Footer must feel minimal, calm, and app-native.
+- Footer must not resemble a website footer.
