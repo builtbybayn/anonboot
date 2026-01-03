@@ -1,7 +1,9 @@
 .footer {
   width: 100%;
-  height: auto; /* Content-driven */
-  padding: 16px 0 24px 0; /* Vertical padding */
+  height: auto;
+  /* Content-driven */
+  padding: 16px 0 24px 0;
+  /* Vertical padding */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,15 +16,13 @@
 }
 
 .divider {
-  width: calc(100% + 32px);
+  width: calc(100% + 128px);
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 76, 83, 0.4) 20%,
-    rgba(75, 76, 83, 0.4) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(75, 76, 83, 0.4) 20%,
+      rgba(75, 76, 83, 0.4) 80%,
+      transparent 100%);
   margin-bottom: 0px;
 }
 
@@ -39,7 +39,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 28px; /* Equal spacing, visually weighted */
+  gap: 28px;
+  /* Equal spacing, visually weighted */
 }
 
 .link {
@@ -84,8 +85,10 @@
 
 .watermark {
   width: auto;
-  height: 24px; /* Adjust height to keep it subtle */
-  opacity: 0.3; /* Low opacity watermark */
+  height: 24px;
+  /* Adjust height to keep it subtle */
+  opacity: 0.3;
+  /* Low opacity watermark */
   /* If needed, apply filter to match "muted UI color" more precisely if the SVG itself isn't perfect */
   pointer-events: none;
   user-select: none;

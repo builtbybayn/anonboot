@@ -72,7 +72,7 @@
   line-height: 1;
   transition: font-size 0.3s ease;
   user-select: none;
-  background-image: linear-gradient(135deg, #9AC0DE 0%, #6E93B3 100%);
+  background-image: linear-gradient(-45deg, #9AC0DE 0%, #6E93B3 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
