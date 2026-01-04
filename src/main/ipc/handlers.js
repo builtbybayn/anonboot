@@ -10,10 +10,19 @@ import {
   handleRedo,
   getHistoryCounts
 } from '../core/controller.js'
+import { getSupportData, refreshSupportData } from '../core/support.js'
 
 export function setupHandlers() {
   ipcMain.handle('app:checkAdmin', async () => {
     return await isUserAdmin()
+  })
+
+  ipcMain.handle('app:getSupportData', async () => {
+    return await getSupportData()
+  })
+
+  ipcMain.handle('app:refreshSupportData', async (_, force) => {
+    return await refreshSupportData(force)
   })
 
   ipcMain.handle('app:getSchema', () => {

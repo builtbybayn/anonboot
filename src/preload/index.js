@@ -14,7 +14,9 @@ const api = {
     ipcRenderer.invoke('app:toggleSetting', category, id, value),
   undo: () => ipcRenderer.invoke('app:undo'),
   redo: () => ipcRenderer.invoke('app:redo'),
-  getHistoryCounts: () => ipcRenderer.invoke('app:getHistoryCounts')
+  getHistoryCounts: () => ipcRenderer.invoke('app:getHistoryCounts'),
+  getSupportData: () => ipcRenderer.invoke('app:getSupportData'),
+  refreshSupportData: (force) => ipcRenderer.invoke('app:refreshSupportData', force)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

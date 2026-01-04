@@ -1,0 +1,272 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(6, 7, 10, 0.5);
+  /* #06070A at 0.5 opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+
+  background-color: var(--color-bg-panel);
+  /* #12131A */
+
+  border-radius: 12px;
+  /* Matching rounded corners used elsewhere */
+
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  /* Subtle shadow */
+
+  width: 90%;
+
+  max-width: 480px;
+  /* Estimated from screenshot proportions */
+
+  max-height: 480px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow-y: auto;
+
+  position: relative;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: var(--color-icon-base) transparent;
+
+}
+
+
+
+.modal::-webkit-scrollbar {
+
+
+
+  width: 10px;
+
+
+
+}
+
+
+
+.modal::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+
+
+.modal::-webkit-scrollbar-thumb {
+
+  background-color: var(--color-icon-base);
+
+  border-radius: 5px;
+
+}
+
+
+
+.modal::-webkit-scrollbar-thumb:hover {
+
+  background-color: var(--color-icon-hover);
+
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+.title {
+  color: var(--color-text-primary);
+  /* #FFFFFF */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--color-icon-base);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.closeButton:hover {
+  color: var(--color-text-secondary);
+  /* #DCDCDC */
+}
+
+/* Description Strip */
+.descriptionStrip {
+  background-color: #1a1b24;
+  padding: 16px 24px;
+}
+
+.description {
+  color: var(--color-text-secondary);
+  /* #DCDCDC */
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Content Area */
+.content {
+  padding: 16px 0 24px 0;
+  /* Vertical only, items span full width */
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #8d9de4;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 24px;
+  /* Maintain horizontal alignment for the label */
+  margin-bottom: 16px;
+}
+
+/* Accordion Sections */
+.sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  /* Match ConfigItem row height */
+  padding: 0 24px;
+  /* Match modal horizontal padding */
+  background-color: var(--color-bg-row);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+  user-select: none;
+  gap: 8px;
+  /* Spacing between label and chevron */
+}
+
+.sectionHeader:hover {
+  background-color: var(--color-bg-row-hover);
+}
+
+.sectionLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  /* flex: 1; REMOVED to keep chevron close to text */
+}
+
+.chevronIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-icon-base);
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.2s ease;
+  transform: rotate(-180deg);
+  /* Default point down */
+}
+
+.sectionHeader:hover .chevronIcon {
+  color: var(--color-icon-hover);
+}
+
+.expanded .chevronIcon {
+  transform: rotate(0deg);
+  /* Point up when expanded */
+}
+
+/* Children List */
+.childrenList {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.childrenList.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.childrenInner {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.childRow {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  /* Match child row height */
+  /* Child indentation rule: 24px modal padding + 24px indent = 48px visual start */
+  padding: 0 24px 0 48px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+  user-select: none;
+  justify-content: space-between;
+}
+
+.childRow:hover {
+  background-color: var(--color-bg-row-hover);
+}
+
+.childLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.childIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-primary);
+  /* Or icon color */
+  /* If these are colored SVGs, we might not want to override color. 
+     If they are mono, use --color-icon-base or similar. 
+     The prompt implies colored branding usually, but icons I made are stroke based. 
+     Let's default to icon base color unless specific branding is needed. */
+  color: var(--color-icon-base);
+  transition: color 0.2s;
+}
+
+.childRow:hover .childIcon {
+  color: var(--color-icon-hover);
+}
+
+.nestedLabel {
+  /* For nested network display if needed */
+  font-size: 12px;
+  color: #6e93b3;
+  /* Subtle blueish gray? */
+}

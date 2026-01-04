@@ -1,13 +1,16 @@
 .item {
   display: flex;
   align-items: center;
-  height: var(--spacing-row-height); /* 56px */
-  padding: 0 var(--spacing-row-padding); /* 16px */
+  height: var(--spacing-row-height);
+  /* 56px */
+  padding: 0 var(--spacing-row-padding);
+  /* 16px */
   background-color: var(--color-bg-row);
   border-radius: var(--spacing-row-radius);
   transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
-  cursor: pointer; /* Row is clickable for expansion */
+  cursor: pointer;
+  /* Row is clickable for expansion */
 }
 
 .item:hover {
@@ -15,7 +18,8 @@
 }
 
 .childItem {
-  height: var(--spacing-child-row-height); /* 48px */
+  height: var(--spacing-child-row-height);
+  /* 48px */
   /* Child indentation rule: 16px padding + 24px indent = 40px visual start */
   padding-left: calc(var(--spacing-row-padding) + 24px);
 }
@@ -25,7 +29,8 @@
 }
 
 .label {
-  font-size: 18px; /* Parent label size */
+  font-size: 18px;
+  /* Parent label size */
   font-weight: 500;
   color: var(--color-text-primary);
   margin-right: var(--spacing-gap-small);
@@ -33,7 +38,8 @@
 }
 
 .childItem .label {
-  font-size: 16px; /* Child label size */
+  font-size: 16px;
+  /* Child label size */
   color: var(--color-text-secondary);
 }
 
@@ -47,7 +53,8 @@
   align-items: center;
   justify-content: center;
   transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  width: 28px; /* Hit area */
+  width: 28px;
+  /* Hit area */
   height: 28px;
 }
 
@@ -63,7 +70,8 @@
   transition:
     color 0.2s ease,
     transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform: rotate(180deg); /* Default point down */
+  transform: rotate(180deg);
+  /* Default point down */
 }
 
 .item:hover .chevronIcon {

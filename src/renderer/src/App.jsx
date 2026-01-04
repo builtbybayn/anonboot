@@ -3,6 +3,8 @@ import AdminLock from './components/AdminLock'
 import Header from './components/Header'
 import ConfigGroup from './components/ConfigGroup'
 import Footer from './components/Footer'
+import SupportModal from './components/SupportModal'
+import PaymentModal from './components/PaymentModal'
 import { configStructure } from './data/configData'
 
 function App() {
@@ -17,6 +19,10 @@ function App() {
   const [isInitialLoading, setIsInitialLoading] = useState(true)
   const [historyCounts, setHistoryCounts] = useState({ undo: 0, redo: 0 })
   const [currentSchema, setSchema] = useState(null)
+
+  const [isSupportOpen, setIsSupportOpen] = useState(false)
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false)
+  const [paymentPayload, setPaymentPayload] = useState(null)
 
   // Logic to calculate config based on mode (Only handles static layout for now)
   const getModeConfig = (selectedMode) => {
@@ -375,6 +381,11 @@ function App() {
     }
   }
 
+  const handleOpenPayment = (payload) => {
+    setPaymentPayload(payload)
+    setIsPaymentOpen(true)
+  }
+
   if (isAdmin === false) {
     return <AdminLock />
   }
@@ -405,8 +416,22 @@ function App() {
             />
           ))}
         </div>
-        <Footer />
+        <Footer onOpenSupport={() => setIsSupportOpen(true)} />
       </main>
+
+      <SupportModal
+        isOpen={isSupportOpen}
+        onClose={() => setIsSupportOpen(false)}
+        onOpenPayment={handleOpenPayment}
+        isCovered={isPaymentOpen}
+      />
+
+      <PaymentModal
+        isOpen={isPaymentOpen}
+        onBack={() => setIsPaymentOpen(false)}
+        onClose={() => setIsPaymentOpen(false)}
+        {...paymentPayload}
+      />
     </div>
   )
 }
