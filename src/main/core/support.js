@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import path from 'path'
 
 // Placeholder URL - replace with actual endpoint
-const SUPPORT_JSON_URL = 'https://api.anonboot.com/support.json'
+const SUPPORT_JSON_URL = 'https://support.anonboot.app/support.json'
 const CACHE_FILENAME = 'support-cache.json'
 const THROTTLE_HOURS = 24
 

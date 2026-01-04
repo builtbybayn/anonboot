@@ -463,3 +463,22 @@ Replace the current segmented “Standard / Paranoid / Custom” selector with a
 - Footer contains no additional links or content.
 - Footer must feel minimal, calm, and app-native.
 - Footer must not resemble a website footer.
+
+## Crypto
+
+each crypto should be mapped to its specific SVG and text color. 
+If there is not an SVG, it should fallback to displaying nothing. if there is not a text color, it should fallback to #ffffff (white)
+
+### Text Colors
+
+Bitcoin: #F7931A
+
+Ethereum: #627EEA
+
+Solana: #A364FC
+
+USDC: #2775CA
+
+USDT: #53AE94
+
+Litecoin: #497ED1

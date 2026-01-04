@@ -1,17 +1,41 @@
 import { useState, useEffect } from 'react'
 import styles from './SupportModal.module.css'
-import { XIcon, ChevronIcon, UsdcIcon, BtcIcon, EthIcon } from './Icons'
+import {
+  XIcon,
+  ChevronIcon,
+  UsdcIcon,
+  BtcIcon,
+  EthIcon,
+  SolIcon,
+  UsdtIcon,
+  LtcIcon,
+  UsdcOnEthIcon,
+  UsdcOnSolIcon,
+  UsdtOnEthIcon,
+  UsdtOnSolIcon
+} from './Icons'
 
 const ICON_MAP = {
   usdc: UsdcIcon,
   btc: BtcIcon,
-  eth: EthIcon
+  eth: EthIcon,
+  sol: SolIcon,
+  usdt: UsdtIcon,
+  ltc: LtcIcon
+}
+
+const NETWORK_ICON_MAP = {
+  'usdc:ethereum': UsdcOnEthIcon,
+  'usdc:solana': UsdcOnSolIcon,
+  'usdt:ethereum': UsdtOnEthIcon,
+  'usdt:solana': UsdtOnSolIcon
 }
 
 const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
   const [isTraditionalExpanded, setIsTraditionalExpanded] = useState(false)
   const [isCryptoExpanded, setIsCryptoExpanded] = useState(true)
   const [supportData, setSupportData] = useState(null)
+  const [expandedItems, setExpandedItems] = useState({})
 
   // Load Data
   useEffect(() => {
@@ -21,8 +45,7 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
         if (data && data.crypto) {
           setSupportData(data)
         }
-        // Attempt background refresh (throttled by main process)
-        // Only update local state if updated: true
+        // Attempt background refresh
         window.api.refreshSupportData().then((res) => {
           if (res && res.updated && res.data) {
             setSupportData(res.data)
@@ -48,24 +71,29 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
 
   if (!isOpen) return null
 
-  const handleCryptoClick = (item) => {
-    // If it has networks (like USDC), use the first network for now
-    if (item.networks && item.networks.length > 0) {
-      const net = item.networks[0]
-      onOpenPayment({
-        assetId: item.assetId,
-        networkId: net.networkId,
-        title: net.label,
-        address: net.address
-      })
-    } else {
-      // Direct address (BTC, ETH)
-      onOpenPayment({
-        assetId: item.assetId,
-        title: item.label,
-        address: item.address
-      })
+  const toggleItemExpansion = (assetId) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [assetId]: !prev[assetId]
+    }))
+  }
+
+  const handleNetworkClick = (item, network) => {
+    let title = network.label
+    if (!title) {
+      if (item.label.toLowerCase() === network.networkId.toLowerCase()) {
+        title = item.label
+      } else {
+        title = `${item.label} on ${network.networkId}`
+      }
     }
+
+    onOpenPayment({
+      assetId: item.assetId,
+      networkId: network.networkId,
+      title,
+      address: network.address
+    })
   }
 
   const renderCryptoList = () => {
@@ -79,16 +107,73 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
 
     return supportData.crypto.map((item) => {
       const IconComponent = ICON_MAP[item.assetId]
-      return (
-        <div
-          key={item.assetId}
-          className={styles.childRow}
-          onClick={() => handleCryptoClick(item)}
-        >
-          <span className={styles.childLabel}>{item.label}</span>
-          {IconComponent && <IconComponent className={styles.childIcon} />}
-        </div>
-      )
+      const hasMultipleNetworks = item.networks && item.networks.length > 1
+      const isExpanded = expandedItems[item.assetId]
+
+      if (hasMultipleNetworks) {
+        return (
+          <div key={item.assetId}>
+            {/* Parent Row */}
+            <div
+              className={styles.childRow}
+              onClick={() => toggleItemExpansion(item.assetId)}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className={styles.childLabel} style={{ color: 'var(--color-text-primary)' }}>
+                  {item.label}
+                </span>
+                <ChevronIcon
+                  className={styles.chevronIcon}
+                  style={{
+                    transform: isExpanded ? 'rotate(0deg)' : 'rotate(180deg)',
+                    width: '16px',
+                    height: '16px'
+                  }}
+                />
+              </div>
+              {IconComponent && <IconComponent className={styles.childIcon} />}
+            </div>
+
+            {/* Nested Networks */}
+            <div
+              className={`${styles.childrenList} ${isExpanded ? styles.open : ''}`}
+              style={{ paddingLeft: '0' }}
+            >
+              <div className={styles.childrenInner}>
+                {item.networks.map((net) => {
+                  const NetworkIcon = NETWORK_ICON_MAP[`${item.assetId}:${net.networkId}`]
+                  return (
+                    <div
+                      key={net.networkId}
+                      className={styles.childRow}
+                      style={{ paddingLeft: '64px' }} // Extra indent for nested items
+                      onClick={() => handleNetworkClick(item, net)}
+                    >
+                      <span className={styles.childLabel}>{net.label || net.networkId}</span>
+                      {NetworkIcon && <NetworkIcon className={styles.childIcon} />}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        )
+      } else {
+        // Single Network
+        const network = item.networks ? item.networks[0] : null
+        if (!network) return null
+
+        return (
+          <div
+            key={item.assetId}
+            className={styles.childRow}
+            onClick={() => handleNetworkClick(item, network)}
+          >
+            <span className={styles.childLabel}>{item.label}</span>
+            {IconComponent && <IconComponent className={styles.childIcon} />}
+          </div>
+        )
+      }
     })
   }
 

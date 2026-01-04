@@ -9,7 +9,10 @@ const qrCache = new Map()
 const ASSET_COLORS = {
   btc: '#F7931A',
   eth: '#627EEA',
-  usdc: '#2775CA'
+  sol: '#A364FC',
+  usdc: '#2775CA',
+  usdt: '#53AE94',
+  ltc: '#497ED1'
 }
 
 const PaymentModal = ({ isOpen, onBack, onClose, title, assetId, address, networkId }) => {

@@ -1,3 +1,16 @@
+import usdcSrc from '../assets/usdc.svg'
+import btcSrc from '../assets/btc.svg'
+import ethSrc from '../assets/eth.svg'
+import solSrc from '../assets/sol.svg'
+import usdtSrc from '../assets/usdt.svg'
+import ltcSrc from '../assets/ltc.svg'
+import usdcOnEthSrc from '../assets/usdc-on-eth.svg'
+import usdcOnSolSrc from '../assets/usdc-on-sol.svg'
+import usdtOnEthSrc from '../assets/usdt-on-eth.svg'
+import usdtOnSolSrc from '../assets/usdt-on-sol.svg'
+
+// UI Icons (Inline for currentColor support)
+
 export const BackIcon = ({ className }) => (
   <svg
     width="100%"
@@ -53,7 +66,7 @@ export const CopyIcon = ({ className }) => (
   </svg>
 )
 
-export const CheckIcon = ({ className }) => (
+export const CheckIcon = ({ className, style }) => (
   <svg
     width="100%"
     height="100%"
@@ -61,6 +74,7 @@ export const CheckIcon = ({ className }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    style={style}
   >
     <path
       d="M20 6L9 17L4 12"
@@ -88,71 +102,6 @@ export const XIcon = ({ className }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </svg>
-)
-
-export const UsdcIcon = ({ className }) => (
-  <svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 32 32"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <g fill="none">
-      <circle fill="#3E73C4" cx="16" cy="16" r="16" />
-      <g fill="#FFF">
-        <path d="M20.022 18.124c0-2.124-1.28-2.852-3.84-3.156-1.828-.243-2.193-.728-2.193-1.578 0-.85.61-1.396 1.828-1.396 1.097 0 1.707.364 2.011 1.275a.458.458 0 00.427.303h.975a.416.416 0 00.427-.425v-.06a3.04 3.04 0 00-2.743-2.489V9.142c0-.243-.183-.425-.487-.486h-.915c-.243 0-.426.182-.487.486v1.396c-1.829.242-2.986 1.456-2.986 2.974 0 2.002 1.218 2.791 3.778 3.095 1.707.303 2.255.668 2.255 1.639 0 .97-.853 1.638-2.011 1.638-1.585 0-2.133-.667-2.316-1.578-.06-.242-.244-.364-.427-.364h-1.036a.416.416 0 00-.426.425v.06c.243 1.518 1.219 2.61 3.23 2.914v1.457c0 .242.183.425.487.485h.915c.243 0 .426-.182.487-.485V21.34c1.829-.303 3.047-1.578 3.047-3.217z" />
-        <path d="M12.892 24.497c-4.754-1.7-7.192-6.98-5.424-11.653.914-2.55 2.925-4.491 5.424-5.402.244-.121.365-.303.365-.607v-.85c0-.242-.121-.424-.365-.485-.061 0-.183 0-.244.06a10.895 10.895 0 00-7.13 13.717c1.096 3.4 3.717 6.01 7.13 7.102.244.121.488 0 .548-.243.061-.06.061-.122.061-.243v-.85c0-.182-.182-.424-.365-.546zm6.46-18.936c-.244-.122-.488 0-.548.242-.061.061-.061.122-.061.243v.85c0 .243.182.485.365.607 4.754 1.7 7.192 6.98 5.424 11.653-.914 2.55-2.925 4.491-5.424 5.402-.244.121-.365.303-.365.607v.85c0 .242.121.424.365.485.061 0 .183 0 .244-.06a10.895 10.895 0 007.13-13.717c-1.096-3.46-3.778-6.07-7.13-7.162z" />
-      </g>
-    </g>
-  </svg>
-)
-
-export const BtcIcon = ({ className }) => (
-  <svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 4091.27 4091.73"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <g id="Layer_x0020_1">
-      <g id="_1421344023328">
-        <path
-          fill="#F7931A"
-          fillRule="nonzero"
-          d="M4030.06 2540.77c-273.24,1096.01 -1383.32,1763.02 -2479.46,1489.71 -1095.68,-273.24 -1762.69,-1383.39 -1489.33,-2479.31 273.12,-1096.13 1383.2,-1763.19 2479,-1489.95 1096.06,273.24 1763.03,1383.51 1489.76,2479.57l0.02 -0.02z"
-        />
-        <path
-          fill="white"
-          fillRule="nonzero"
-          d="M2947.77 1754.38c40.72,-272.26 -166.56,-418.61 -450,-516.24l91.95 -368.8 -224.5 -55.94 -89.51 359.09c-59.02,-14.72 -119.63,-28.59 -179.87,-42.34l90.16 -361.46 -224.36 -55.94 -92 368.68c-48.84,-11.12 -96.81,-22.11 -143.35,-33.69l0.26 -1.16 -309.59 -77.31 -59.72 239.78c0,0 166.56,38.18 163.05,40.53 90.91,22.69 107.35,82.87 104.62,130.57l-104.74 420.15c6.26,1.59 14.38,3.89 23.34,7.49 -7.49,-1.86 -15.46,-3.89 -23.73,-5.87l-146.81 588.57c-11.11,27.62 -39.31,69.07 -102.87,53.33 2.25,3.26 -163.17,-40.72 -163.17,-40.72l-111.46 256.98 292.15 72.83c54.35,13.63 107.61,27.89 160.06,41.3l-92.9 373.03 224.24 55.94 92 -369.07c61.26,16.63 120.71,31.97 178.91,46.43l-91.69 367.33 224.51 55.94 92.89 -372.33c382.82,72.45 670.67,43.24 791.83,-303.02 97.63,-278.78 -4.86,-439.58 -206.26,-544.44 146.69,-33.83 257.18,-130.31 286.64,-329.61l-0.07 -0.05zm-512.93 719.26c-69.38,278.78 -538.76,128.08 -690.94,90.29l123.28 -494.2c152.17,37.99 640.17,113.17 567.67,403.91zm69.43 -723.3c-63.29,253.58 -453.96,124.75 -580.69,93.16l111.77 -448.21c126.73,31.59 534.85,90.55 468.94,355.05l-0.02 0z"
-        />
-      </g>
-    </g>
-  </svg>
-)
-
-export const EthIcon = ({ className }) => (
-  <svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 32 32"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <g fill="none" fillRule="evenodd">
-      <circle cx="16" cy="16" r="16" fill="#627EEA" />
-      <g fill="#FFF" fillRule="nonzero">
-        <path fillOpacity=".602" d="M16.498 4v8.87l7.497 3.35z" />
-        <path d="M16.498 4L9 16.22l7.498-3.35z" />
-        <path fillOpacity=".602" d="M16.498 21.968v6.027L24 17.616z" />
-        <path d="M16.498 27.995v-6.028L9 17.616z" />
-        <path fillOpacity=".2" d="M16.498 20.573l7.497-4.353-7.497-3.348z" />
-        <path fillOpacity=".602" d="M9 16.22l7.498 4.353v-7.701z" />
-      </g>
-    </g>
   </svg>
 )
 
@@ -215,7 +164,7 @@ export const RefreshIcon = ({ className }) => (
   </svg>
 )
 
-export const ChevronIcon = ({ className }) => (
+export const ChevronIcon = ({ className, style }) => (
   <svg
     width="100%"
     height="100%"
@@ -223,6 +172,7 @@ export const ChevronIcon = ({ className }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    style={style}
   >
     <path
       d="M6 15L12 9L18 15"
@@ -352,7 +302,7 @@ export const HeartIcon = ({ className }) => (
     className={className}
   >
     <path
-      d="M294.626 88.215c-2.388-17.766-9.337-34.209-20.099-47.555-9.956-12.346-22.871-21.525-36.365-25.844-10.026-3.201-19.906-4.824-29.374-4.824-24.577 0-46.313 10.811-62.147 30.678-17.638-20.154-38.392-30.355-61.812-30.357-8.839 0-18.06 1.516-27.408 4.502-13.505 4.32-26.423 13.498-36.382 25.844C10.274 54.004 3.322 70.449 0.934 88.215c-3.858 28.701 4.289 60.008 23.562 90.533 22.278 35.285 59.255 69.889 109.904 102.848 3.989 2.598 8.617 3.971 13.381 3.971 4.764 0 9.392-1.373 13.383-3.973 50.646-32.957 87.623-67.561 109.9-102.848 11.271-18.992 19.418-50.297 15.562-79z"
+      d="M294.626 88.215c-2.388-17.766-9.337-34.209-20.099-47.555-9.956-12.346-22.871-21.525-36.365-25.844-10.026-3.201-19.906-4.824-29.374-4.824-24.577 0-46.313 10.811-62.147 30.678-17.638-20.154-38.392-30.355-61.812-30.357-8.839 0-18.06 1.516-27.408 4.502-13.505 4.32-26.423 13.498-36.382 25.844C10.274 54.004 3.322 70.449 0.934 88.215c-3.858 28.701 4.289 60.008 23.562 90.533 22.278 35.285 59.255 69.889 109.904 102.848 3.989 2.598 8.617,3.971 13.381 3.971 4.764 0 9.392-1.373 13.383-3.973 50.646-32.957 87.623-67.561 109.9-102.848 11.271-18.992 19.418-50.297 15.562-79z"
       fill="currentColor"
     />
   </svg>
@@ -372,4 +322,46 @@ export const AboutIcon = ({ className }) => (
       d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm23.744 191.488c-52.096 0-92.928 14.784-123.2 44.352-30.976 29.568-45.76 70.4-45.76 122.496h80.256c0-29.568 5.632-52.8 17.6-68.992 13.376-19.712 35.2-28.864 66.176-28.864 23.936 0 42.944 6.336 56.32 19.712 12.672 13.376 19.712 31.68 19.712 54.912 0 17.6-6.336 34.496-19.008 49.984l-8.448 9.856c-45.76 40.832-73.216 70.4-82.368 89.408-9.856 19.008-14.08 42.24-14.08 68.992v9.856h80.96v-9.856c0-16.896 3.52-31.68 10.56-45.76 6.336-12.672 15.488-24.64 28.16-35.2 33.792-29.568 54.208-48.576 60.544-55.616 16.896-22.528 26.048-51.392 26.048-86.592 0-42.944-14.08-76.736-42.24-101.376-28.16-25.344-65.472-37.312-111.232-37.312zm-12.672 406.208a54.272 54.272 0 0 0-38.72 14.784 49.408 49.408 0 0 0-15.488 38.016c0 15.488 4.928 28.16 15.488 38.016A54.848 54.848 0 0 0 523.072 768c15.488 0 28.16-4.928 38.72-14.784a51.52 51.52 0 0 0 16.192-38.72 51.968 51.968 0 0 0-15.488-38.016 55.936 55.936 0 0 0-39.424-14.784z"
     />
   </svg>
+)
+
+// Crypto Icons (Using Asset Images)
+
+export const UsdcIcon = ({ className }) => (
+  <img src={usdcSrc} className={className} alt="USDC" />
+)
+
+export const BtcIcon = ({ className }) => (
+  <img src={btcSrc} className={className} alt="Bitcoin" />
+)
+
+export const EthIcon = ({ className }) => (
+  <img src={ethSrc} className={className} alt="Ethereum" />
+)
+
+export const SolIcon = ({ className }) => (
+  <img src={solSrc} className={className} alt="Solana" />
+)
+
+export const UsdtIcon = ({ className }) => (
+  <img src={usdtSrc} className={className} alt="USDT" />
+)
+
+export const LtcIcon = ({ className }) => (
+  <img src={ltcSrc} className={className} alt="Litecoin" />
+)
+
+export const UsdcOnEthIcon = ({ className }) => (
+  <img src={usdcOnEthSrc} className={className} alt="USDC on Ethereum" />
+)
+
+export const UsdcOnSolIcon = ({ className }) => (
+  <img src={usdcOnSolSrc} className={className} alt="USDC on Solana" />
+)
+
+export const UsdtOnEthIcon = ({ className }) => (
+  <img src={usdtOnEthSrc} className={className} alt="USDT on Ethereum" />
+)
+
+export const UsdtOnSolIcon = ({ className }) => (
+  <img src={usdtOnSolSrc} className={className} alt="USDT on Solana" />
 )
