@@ -4,8 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(6, 7, 10, 0.5);
-  /* #06070A at 0.5 opacity */
+  background-color: rgba(6, 7, 10, 0.5); /* #06070A at 0.5 opacity */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,73 +12,35 @@
 }
 
 .modal {
-
-  background-color: var(--color-bg-panel);
-  /* #12131A */
-
-  border-radius: 12px;
-  /* Matching rounded corners used elsewhere */
-
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-  /* Subtle shadow */
-
+  background-color: var(--color-bg-panel); /* #12131A */
+  border-radius: 12px; /* Matching rounded corners used elsewhere */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25); /* Subtle shadow */
   width: 90%;
-
-  max-width: 480px;
-  /* Estimated from screenshot proportions */
-
-  max-height: 480px;
-
+  max-width: 480px; /* Estimated from screenshot proportions */
+  max-height: 400px;
   display: flex;
-
   flex-direction: column;
-
   overflow-y: auto;
-
   position: relative;
-
   scrollbar-width: thin;
-
   scrollbar-color: var(--color-icon-base) transparent;
-
 }
-
-
 
 .modal::-webkit-scrollbar {
-
-
-
   width: 10px;
-
-
-
 }
-
-
 
 .modal::-webkit-scrollbar-track {
-
   background: transparent;
-
 }
-
-
 
 .modal::-webkit-scrollbar-thumb {
-
   background-color: var(--color-icon-base);
-
   border-radius: 5px;
-
 }
 
-
-
 .modal::-webkit-scrollbar-thumb:hover {
-
   background-color: var(--color-icon-hover);
-
 }
 
 /* Header */
@@ -91,8 +52,7 @@
 }
 
 .title {
-  color: var(--color-text-primary);
-  /* #FFFFFF */
+  color: var(--color-text-primary); /* #FFFFFF */
   font-size: 18px;
   font-weight: 600;
 }
@@ -112,8 +72,7 @@
 }
 
 .closeButton:hover {
-  color: var(--color-text-secondary);
-  /* #DCDCDC */
+  color: var(--color-text-secondary); /* #DCDCDC */
 }
 
 /* Description Strip */
@@ -123,8 +82,7 @@
 }
 
 .description {
-  color: var(--color-text-secondary);
-  /* #DCDCDC */
+  color: var(--color-text-secondary); /* #DCDCDC */
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
@@ -132,8 +90,7 @@
 
 /* Content Area */
 .content {
-  padding: 16px 0 24px 0;
-  /* Vertical only, items span full width */
+  padding: 16px 0 24px 0; /* Vertical only, items span full width */
   display: flex;
   flex-direction: column;
 }
@@ -144,8 +101,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 0 24px;
-  /* Maintain horizontal alignment for the label */
+  padding: 0 24px; /* Maintain horizontal alignment for the label */
   margin-bottom: 16px;
 }
 
@@ -158,17 +114,14 @@
 .sectionHeader {
   display: flex;
   align-items: center;
-  height: 56px;
-  /* Match ConfigItem row height */
-  padding: 0 24px;
-  /* Match modal horizontal padding */
+  height: 56px; /* Match ConfigItem row height */
+  padding: 0 24px; /* Match modal horizontal padding */
   background-color: var(--color-bg-row);
   border-radius: 0;
   cursor: pointer;
   transition: background-color 140ms ease;
   user-select: none;
-  gap: 8px;
-  /* Spacing between label and chevron */
+  gap: 8px; /* Spacing between label and chevron */
 }
 
 .sectionHeader:hover {
@@ -189,8 +142,7 @@
   transition:
     transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
     color 0.2s ease;
-  transform: rotate(-180deg);
-  /* Default point down */
+  transform: rotate(180deg); /* Default point down */
 }
 
 .sectionHeader:hover .chevronIcon {
@@ -198,8 +150,7 @@
 }
 
 .expanded .chevronIcon {
-  transform: rotate(0deg);
-  /* Point up when expanded */
+  transform: rotate(0deg); /* Point up when expanded */
 }
 
 /* Children List */
@@ -227,8 +178,7 @@
 .childRow {
   display: flex;
   align-items: center;
-  height: 48px;
-  /* Match child row height */
+  height: 48px; /* Match child row height */
   /* Child indentation rule: 24px modal padding + 24px indent = 48px visual start */
   padding: 0 24px 0 48px;
   background-color: transparent;
@@ -250,12 +200,6 @@
 .childIcon {
   width: 24px;
   height: 24px;
-  color: var(--color-text-primary);
-  /* Or icon color */
-  /* If these are colored SVGs, we might not want to override color. 
-     If they are mono, use --color-icon-base or similar. 
-     The prompt implies colored branding usually, but icons I made are stroke based. 
-     Let's default to icon base color unless specific branding is needed. */
   color: var(--color-icon-base);
   transition: color 0.2s;
 }
@@ -267,6 +211,11 @@
 .nestedLabel {
   /* For nested network display if needed */
   font-size: 12px;
-  color: #6e93b3;
-  /* Subtle blueish gray? */
+  color: #6e93b3; /* Subtle blueish gray? */
+}
+
+.helperText {
+  font-size: 12px;
+  color: #4b4c53;
+  padding: 8px 24px 8px 24px; /* Align with header text */
 }

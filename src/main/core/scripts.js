@@ -158,8 +158,9 @@ async function detectAllServices(captureFilePath) {
 
 // Registry
 export async function detectRegistry(reg, captureFilePath, writeToDisk = false) {
+  const id = reg.id || reg.name
   return await detect(
-    reg.name,
+    id,
     paths.registry.detect,
     captureFilePath,
     ['-Path', reg.path, '-Name', reg.name],
@@ -218,7 +219,7 @@ export async function detectDoHHarden(captureFilePath, writeToDisk = false) {
 // Firewall
 export async function detectFirewallEndpoint(endpoint, captureFilePath, writeToDisk = false) {
   return await detect(
-    endpoint,
+    'FW_' + endpoint,
     paths.firewall.detectEndpoint,
     captureFilePath,
     ['-Endpoint', endpoint],

@@ -5,6 +5,7 @@ import ConfigGroup from './components/ConfigGroup'
 import Footer from './components/Footer'
 import SupportModal from './components/SupportModal'
 import PaymentModal from './components/PaymentModal'
+import AboutModal from './components/AboutModal'
 import { configStructure } from './data/configData'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
   const [isSupportOpen, setIsSupportOpen] = useState(false)
   const [isPaymentOpen, setIsPaymentOpen] = useState(false)
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
   const [paymentPayload, setPaymentPayload] = useState(null)
 
   // Logic to calculate config based on mode (Only handles static layout for now)
@@ -71,7 +73,10 @@ function App() {
       if (id === 'telemetry_hosts') {
         // Check if ALL endpoints are blocked. itemState is object of endpoints
         // itemState = { [ep]: { exists: true, enabled: true }, ... }
-        return schema.firewall.every((ep) => itemState[ep] && itemState[ep].enabled === true)
+        return schema.firewall.every((ep) => {
+          const key = 'FW_' + ep
+          return itemState[key] && itemState[key].enabled === true
+        })
       } else {
         return itemState ? itemState.enabled : false
       }
@@ -92,7 +97,7 @@ function App() {
     } else if (categoryId === 'devices') {
       const target = schema.devicesRegistry.find((r) => (r.id || r.name) === id)
       if (target) {
-        return isRegistrySecure(id, itemState, target)
+        return isRegistrySecure(id, itemState[id], target)
       } else {
         // Dynamic Device
         // itemState is { Devices: [...] } or single device if filtered?
@@ -416,7 +421,10 @@ function App() {
             />
           ))}
         </div>
-        <Footer onOpenSupport={() => setIsSupportOpen(true)} />
+        <Footer
+          onOpenSupport={() => setIsSupportOpen(true)}
+          onOpenAbout={() => setIsAboutOpen(true)}
+        />
       </main>
 
       <SupportModal
@@ -432,6 +440,8 @@ function App() {
         onClose={() => setIsPaymentOpen(false)}
         {...paymentPayload}
       />
+
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
     </div>
   )
 }

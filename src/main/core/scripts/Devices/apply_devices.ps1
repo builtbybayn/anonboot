@@ -45,15 +45,12 @@ try {
     # Per-device mode: if InstanceId is provided, ignore Mode
     if ($InstanceId) {
         $dev = Get-PnpDevice -InstanceId $InstanceId -ErrorAction SilentlyContinue
-        if ($null -eq $dev) { return }
-
-        try {
-            Disable-PnpDevice -InstanceId $InstanceId -Confirm:$false -ErrorAction Stop
-        }
-        catch {
-            # Already disabled / error — ignore
+        if ($null -eq $dev) {
+             Write-Error "Device not found."
+             exit 1
         }
 
+        Disable-PnpDevice -InstanceId $InstanceId -Confirm:$false -ErrorAction Stop
         return
     }
 

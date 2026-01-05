@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './Header.module.css'
 import checkmarkIcon from '../assets/check-mark.svg'
 import logoIcon from '../assets/anonboot-logo-icon.svg'
@@ -21,16 +21,21 @@ const Header = ({
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
+  const isLocked = useRef(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!scrollRef.current) return
+      if (!scrollRef.current || isLocked.current) return
       const scrollTop = scrollRef.current.scrollTop
 
       if (scrollTop > 20 && !isCollapsed) {
+        isLocked.current = true
         setIsCollapsed(true)
+        setTimeout(() => (isLocked.current = false), 400)
       } else if (scrollTop < 10 && isCollapsed) {
+        isLocked.current = true
         setIsCollapsed(false)
+        setTimeout(() => (isLocked.current = false), 400)
       }
     }
 

@@ -2,7 +2,7 @@ import styles from './Footer.module.css'
 import footerLogo from '../assets/anonboot-white-vector-merged-min.svg'
 import { GithubIcon, HeartIcon, AboutIcon } from './Icons'
 
-const Footer = ({ onOpenSupport }) => {
+const Footer = ({ onOpenSupport, onOpenAbout }) => {
   return (
     <footer className={styles.footer}>
       <div className={styles.centerGroup}>
@@ -28,7 +28,14 @@ const Footer = ({ onOpenSupport }) => {
             <HeartIcon className={styles.icon} />
             <span>Support</span>
           </a>
-          <a href="#" className={styles.link}>
+          <a
+            href="#"
+            className={styles.link}
+            onClick={(e) => {
+              e.preventDefault()
+              if (onOpenAbout) onOpenAbout()
+            }}
+          >
             <AboutIcon className={styles.icon} />
             <span>About</span>
           </a>

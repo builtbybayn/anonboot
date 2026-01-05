@@ -1,4 +1,4 @@
-import { ipcMain } from 'electron'
+import { ipcMain, shell } from 'electron'
 import { detectAllSnapshot, detectAllState, applyAll, revertAll } from '../core/scripts.js'
 import { isUserAdmin } from '../core/admin.js'
 import {
@@ -11,10 +11,18 @@ import {
   getHistoryCounts
 } from '../core/controller.js'
 import { getSupportData, refreshSupportData } from '../core/support.js'
+import { existsSync } from 'fs'
+import getPaths from '../core/paths.js'
+
+const paths = getPaths()
 
 export function setupHandlers() {
   ipcMain.handle('app:checkAdmin', async () => {
     return await isUserAdmin()
+  })
+
+  ipcMain.handle('app:openExternal', (_, url) => {
+    return shell.openExternal(url)
   })
 
   ipcMain.handle('app:getSupportData', async () => {
@@ -55,6 +63,10 @@ export function setupHandlers() {
   })
 
   ipcMain.handle('app:detectState', async () => {
+    if (!existsSync(paths.SNAP)) {
+      console.log('Snapshot file missing. Generating new snapshot...')
+      await detectAllSnapshot()
+    }
     return await detectAllState()
   })
 

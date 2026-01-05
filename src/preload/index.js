@@ -16,7 +16,8 @@ const api = {
   redo: () => ipcRenderer.invoke('app:redo'),
   getHistoryCounts: () => ipcRenderer.invoke('app:getHistoryCounts'),
   getSupportData: () => ipcRenderer.invoke('app:getSupportData'),
-  refreshSupportData: (force) => ipcRenderer.invoke('app:refreshSupportData', force)
+  refreshSupportData: (force) => ipcRenderer.invoke('app:refreshSupportData', force),
+  openExternal: (url) => ipcRenderer.invoke('app:openExternal', url)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

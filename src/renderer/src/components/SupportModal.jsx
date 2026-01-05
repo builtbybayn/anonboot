@@ -12,7 +12,10 @@ import {
   UsdcOnEthIcon,
   UsdcOnSolIcon,
   UsdtOnEthIcon,
-  UsdtOnSolIcon
+  UsdtOnSolIcon,
+  CardIcon,
+  WalletIcon,
+  PayPalIcon
 } from './Icons'
 
 const ICON_MAP = {
@@ -21,7 +24,10 @@ const ICON_MAP = {
   eth: EthIcon,
   sol: SolIcon,
   usdt: UsdtIcon,
-  ltc: LtcIcon
+  ltc: LtcIcon,
+  card: CardIcon,
+  wallets: WalletIcon,
+  paypal: PayPalIcon
 }
 
 const NETWORK_ICON_MAP = {
@@ -42,7 +48,7 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
     const load = async () => {
       try {
         const data = await window.api.getSupportData()
-        if (data && data.crypto) {
+        if (data) {
           setSupportData(data)
         }
         // Attempt background refresh
@@ -96,6 +102,43 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
     })
   }
 
+  const handleTraditionalClick = (item) => {
+    if (item.url) {
+      window.api.openExternal(item.url)
+    }
+  }
+
+  const renderTraditionalList = () => {
+    if (!supportData || !supportData.traditional) {
+      return (
+        <div className={styles.childRow} style={{ cursor: 'default' }}>
+          <span className={styles.childLabel} style={{ opacity: 0.5 }}>
+            Coming soon...
+          </span>
+        </div>
+      )
+    }
+
+    return (
+      <>
+        <div className={styles.helperText}>Opens secure payment in your browser</div>
+        {supportData.traditional.map((item) => {
+          const IconComponent = ICON_MAP[item.methodId]
+          return (
+            <div
+              key={item.methodId}
+              className={styles.childRow}
+              onClick={() => handleTraditionalClick(item)}
+            >
+              <span className={styles.childLabel}>{item.label}</span>
+              {IconComponent && <IconComponent className={styles.childIcon} />}
+            </div>
+          )
+        })}
+      </>
+    )
+  }
+
   const renderCryptoList = () => {
     if (!supportData || !supportData.crypto) {
       return (
@@ -114,10 +157,7 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
         return (
           <div key={item.assetId}>
             {/* Parent Row */}
-            <div
-              className={styles.childRow}
-              onClick={() => toggleItemExpansion(item.assetId)}
-            >
+            <div className={styles.childRow} onClick={() => toggleItemExpansion(item.assetId)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className={styles.childLabel} style={{ color: 'var(--color-text-primary)' }}>
                   {item.label}
@@ -209,15 +249,10 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
                 <span className={styles.sectionLabel}>Traditional</span>
                 <ChevronIcon className={styles.chevronIcon} />
               </div>
-              <div className={`${styles.childrenList} ${isTraditionalExpanded ? styles.open : ''}`}>
-                <div className={styles.childrenInner}>
-                  {/* Placeholder for Traditional Items */}
-                  <div className={styles.childRow} style={{ cursor: 'default' }}>
-                    <span className={styles.childLabel} style={{ opacity: 0.5 }}>
-                      Coming soon...
-                    </span>
-                  </div>
-                </div>
+              <div
+                className={`${styles.childrenList} ${isTraditionalExpanded ? styles.open : ''}`}
+              >
+                <div className={styles.childrenInner}>{renderTraditionalList()}</div>
               </div>
             </div>
 

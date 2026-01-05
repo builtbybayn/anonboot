@@ -184,7 +184,6 @@ export const listOfFirewallEndpoints = [
   'us-v10.events.data.microsoft.com',
   'adl.windows.com',
   'ads.msn.com',
-  'adnexus.net',
   'adnxs.com',
   'scorecardresearch.com',
   'c.msn.com'

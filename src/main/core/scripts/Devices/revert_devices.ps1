@@ -42,23 +42,24 @@ try {
     # Per-device revert takes precedence
     if ($InstanceId) {
         $entry = $snapshot | Where-Object { $_.instanceId -eq $InstanceId } | Select-Object -First 1
-        if ($null -eq $entry) { return }
+        if ($null -eq $entry) { 
+             Write-Error "Device not found in snapshot."
+             exit 1
+        }
 
         $originalStatus = $entry.status
+        # If it was already disabled/error originally, don't try to enable it
         if ($originalStatus -ne 'OK' -and $originalStatus -ne 'Started') {
             return
         }
 
         $current = Get-PnpDevice -InstanceId $entry.instanceId -ErrorAction SilentlyContinue
-        if ($null -eq $current) { return }
-
-        try {
-            Enable-PnpDevice -InstanceId $entry.instanceId -Confirm:$false -ErrorAction Stop
-        }
-        catch {
-            # If it's already enabled or re-enable fails, we just move on
+        if ($null -eq $current) { 
+             Write-Error "Device not found on system."
+             exit 1 
         }
 
+        Enable-PnpDevice -InstanceId $entry.instanceId -Confirm:$false -ErrorAction Stop
         return
     }
 
