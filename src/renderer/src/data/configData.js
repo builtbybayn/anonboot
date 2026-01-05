@@ -2,7 +2,7 @@ export const configStructure = [
   {
     id: 'services',
     label: 'Services',
-    description: 'Background Windows services that collect telemetry or enable remote access.',
+    description: 'Background Windows services that collect telemetry (data) or enable remote access.',
     children: [
       {
         id: 'DiagTrack',

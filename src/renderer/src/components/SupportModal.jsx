@@ -39,7 +39,7 @@ const NETWORK_ICON_MAP = {
 
 const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
   const [isTraditionalExpanded, setIsTraditionalExpanded] = useState(false)
-  const [isCryptoExpanded, setIsCryptoExpanded] = useState(true)
+  const [isCryptoExpanded, setIsCryptoExpanded] = useState(false)
   const [supportData, setSupportData] = useState(null)
   const [expandedItems, setExpandedItems] = useState({})
 
