@@ -237,13 +237,7 @@
 .checkmark {
   width: 20px; /* Match header icon scale */
   height: 20px;
-  /* Filter to match DCDCDC if it's an image? 
-     The image is likely white or colored. 
-     If it's an SVG loaded as img, we can't style color easily unless using filter.
-     Assuming the checkmark asset is appropriate. 
-     If needed, filter: invert(...) or brightness(...) could be used.
-     Spec says "Color: #DCDCDC".
-  */
+  color: #4b4c53;
 }
 
 /* Tooltip */

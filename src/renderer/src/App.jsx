@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import AdminLock from './components/AdminLock'
+import AdminRequiredModal from './components/AdminRequiredModal'
 import Header from './components/Header'
 import ConfigGroup from './components/ConfigGroup'
 import Footer from './components/Footer'
@@ -392,7 +392,7 @@ function App() {
   }
 
   if (isAdmin === false) {
-    return <AdminLock />
+    return <AdminRequiredModal />
   }
 
   return (

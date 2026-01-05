@@ -159,7 +159,7 @@ const SupportModal = ({ isOpen, onClose, onOpenPayment, isCovered }) => {
             {/* Parent Row */}
             <div className={styles.childRow} onClick={() => toggleItemExpansion(item.assetId)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span className={styles.childLabel} style={{ color: 'var(--color-text-primary)' }}>
+                <span className={styles.childLabel}>
                   {item.label}
                 </span>
                 <ChevronIcon

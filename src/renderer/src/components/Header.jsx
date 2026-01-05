@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './Header.module.css'
-import checkmarkIcon from '../assets/check-mark.svg'
 import logoIcon from '../assets/anonboot-logo-icon.svg'
-import { UndoIcon, RedoIcon, RefreshIcon, SpinnerIcon } from './Icons'
+import { UndoIcon, RedoIcon, RefreshIcon, SpinnerIcon, CheckIcon } from './Icons'
 import ModeSelector from './ModeSelector'
 import RevertButton from './RevertButton'
 import HamburgerMenu from './HamburgerMenu'
@@ -92,7 +91,7 @@ const Header = ({
           {isLoading ? (
             <SpinnerIcon className={styles.spinner} />
           ) : (
-            <img src={checkmarkIcon} className={styles.checkmark} alt="Synced" />
+            <CheckIcon className={styles.checkmark} />
           )}
           {showTooltip && !isLoading && (
             <div className={styles.tooltip}>Your information is up to date.</div>

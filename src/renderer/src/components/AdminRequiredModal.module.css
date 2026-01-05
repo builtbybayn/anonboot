@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(6, 7, 10, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background-color: var(--color-bg-panel);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  padding: 24px 24px 16px 24px;
+}
+
+.title {
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.descriptionStrip {
+  background-color: #1a1b24; /* Lighter background from SupportModal */
+  padding: 16px 24px;
+}
+
+.bodyText {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  margin: 0;
+}
+
+.content {
+  padding: 16px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  color: #8d9de4;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stepsPanel {
+  background-color: #1a1b24; /* Darker inset panel */
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepNumber {
+  background-color: #2b2d3b;
+  color: var(--color-text-primary);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.footer {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.exitButton {
+  background-color: #2b2d3b;
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 120px;
+}
+
+.exitButton:hover {
+  background-color: #3b3e4f;
+}
+
+.exitButton:focus {
+  outline: 2px solid #8d9de4;
+  outline-offset: 2px;
+}
