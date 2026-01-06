@@ -7,6 +7,7 @@ import SupportModal from './components/SupportModal'
 import PaymentModal from './components/PaymentModal'
 import AboutModal from './components/AboutModal'
 import LoadingModal from './components/LoadingModal'
+import UpdateBanner from './components/UpdateBanner'
 import { configStructure } from './data/configData'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [showLoadingModal, setShowLoadingModal] = useState(false)
   const [loadingMessage, setLoadingMessage] = useState('')
   const [processingItems, setProcessingItems] = useState(new Set())
+  const [showUpdateBanner, setShowUpdateBanner] = useState(false)
 
   const [historyCounts, setHistoryCounts] = useState({ undo: 0, redo: 0 })
   const [currentSchema, setSchema] = useState(null)
@@ -226,6 +228,12 @@ function App() {
         setIsAppInitializing(true)
         setShowLoadingModal(true)
         await loadState(true, 'Initializing System')
+
+        // Check for updates after initial load
+        const updateInfo = await window.api.checkForUpdates()
+        if (updateInfo && updateInfo.updateAvailable) {
+          setShowUpdateBanner(true)
+        }
       } finally {
         setIsAppInitializing(false)
         setIsInitialLoading(false)
@@ -460,6 +468,16 @@ function App() {
       />
 
       <main ref={scrollRef} className="main-scroll-container">
+        {/* Update Banner */}
+        {showUpdateBanner && (
+          <UpdateBanner
+            onClose={() => setShowUpdateBanner(false)}
+            onUpdate={() =>
+              window.api.openExternal('https://github.com/builtbybayn/anonBOOT/releases')
+            }
+          />
+        )}
+
         <div className="config-list">
           {configLayout.map((category) => (
             <ConfigGroup

@@ -10,7 +10,7 @@ import {
   handleRedo,
   getHistoryCounts
 } from '../core/controller.js'
-import { getSupportData, refreshSupportData } from '../core/support.js'
+import { getSupportData, refreshSupportData, checkForUpdates } from '../core/support.js'
 import { existsSync } from 'fs'
 import getPaths from '../core/paths.js'
 
@@ -31,6 +31,10 @@ export function setupHandlers() {
 
   ipcMain.handle('app:refreshSupportData', async (_, force) => {
     return await refreshSupportData(force)
+  })
+  
+  ipcMain.handle('app:checkForUpdates', async () => {
+    return await checkForUpdates()
   })
 
   ipcMain.handle('app:getSchema', () => {

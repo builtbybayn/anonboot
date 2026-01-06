@@ -1,0 +1,95 @@
+.banner {
+  background-color: var(--color-bg-panel);
+  border-radius: 0;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Text Content Container */
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 2px;
+}
+
+/* Header Text Row */
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Indicator Dot */
+.indicatorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8d9de4;
+  flex-shrink: 0;
+}
+
+/* Header Text */
+.header {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8d9de4;
+  line-height: 1;
+}
+
+/* Body Text Container */
+.bodyContainer {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Action Link */
+.actionLink {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.actionLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Close Button */
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 16px;
+  color: var(--color-icon-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  color: var(--color-text-secondary);
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}

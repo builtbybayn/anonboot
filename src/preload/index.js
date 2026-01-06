@@ -17,6 +17,7 @@ const api = {
   getHistoryCounts: () => ipcRenderer.invoke('app:getHistoryCounts'),
   getSupportData: () => ipcRenderer.invoke('app:getSupportData'),
   refreshSupportData: (force) => ipcRenderer.invoke('app:refreshSupportData', force),
+  checkForUpdates: () => ipcRenderer.invoke('app:checkForUpdates'),
   openExternal: (url) => ipcRenderer.invoke('app:openExternal', url)
 }
 
