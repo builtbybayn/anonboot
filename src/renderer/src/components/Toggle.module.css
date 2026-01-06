@@ -66,14 +66,21 @@
 }
 
 /* Disabled State */
+/* By default, look normal (active) even if disabled */
 .input:disabled + .track {
-  opacity: 0.5;
+  opacity: 1;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .container:has(.input:disabled) {
   cursor: not-allowed;
+}
+
+/* Only apply disabled styling when hovering the toggle container */
+.container:hover .input:disabled + .track {
+  opacity: 0.5;
+  background-color: var(--color-toggle-disabled-bg);
 }
 
 /* Keyframes */

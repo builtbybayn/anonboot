@@ -6,38 +6,38 @@ export const configStructure = [
     children: [
       {
         id: 'DiagTrack',
-        label: 'Connected User Experiences and Telemetry',
-        description: 'The main telemetry service for Windows.'
+        label: 'Disable User Experiences and Telemetry',
+        description: 'The main telemetry (user data) service for Windows.'
       },
       {
         id: 'RemoteAccess',
-        label: 'Remote Access Connection Manager',
+        label: 'Disable Remote Access Connection Manager',
         description: 'Manages dial-up and VPN connections to this computer.'
       },
       {
         id: 'RemoteRegistry',
-        label: 'Remote Registry',
+        label: 'Disable Remote Registry',
         description: 'Enables remote users to modify registry settings on this computer.'
       },
       {
         id: 'NetLogon',
-        label: 'NetLogon',
+        label: 'Disable NetLogon',
         description: 'Maintains a secure channel between this computer and the domain controller.'
       },
       {
         id: 'dmwappushservice',
-        label: 'WAP Push Message Routing Service',
-        description: 'Collects and forwards telemetry data.'
+        label: 'Disable WAP Push Service',
+        description: 'Collects and forwards user data for certain Windows services.'
       },
       {
         id: 'WdiSystemHost',
-        label: 'Diagnostic System Host',
-        description: 'Hosts diagnostic policy service.'
+        label: 'Disable Diagnostic System Host',
+        description: 'Hosts diagnostic policies used to troubleshoot system issues.'
       },
       {
         id: 'WdiServiceHost',
-        label: 'Diagnostic Service Host',
-        description: 'Hosts diagnostics that need to run in a local service context.'
+        label: 'Disable Diagnostic Service Host',
+        description: 'Runs diagnostic services.'
       }
     ]
   },
@@ -48,73 +48,73 @@ export const configStructure = [
     children: [
       {
         id: 'AllowTelemetry',
-        label: 'Allow Telemetry',
-        description: 'Controls the level of diagnostic data sent to Microsoft.'
+        label: 'Disable Telemetry',
+        description: 'Controls how much diagnostic data Windows sends to Microsoft.'
       },
       {
         id: 'Enabled',
-        label: 'Advertising ID',
-        description: 'Unique ID used by apps to target ads.'
+        label: 'Disable Advertising ID',
+        description: 'Unique ID used by apps to deliver personalized ads.'
       },
       {
         id: 'NumberOfSIUFInPeriod',
-        label: 'Feedback Notifications',
+        label: 'Disable Feedback Notifications',
         description: 'Controls how often Windows asks for feedback.'
       },
       {
         id: 'AllowCortana',
-        label: 'Cortana',
+        label: 'Disable Cortana',
         description: 'Disables Cortana voice assistant integration.'
       },
       {
         id: 'TailoredExperiencesWithDiagnosticDataEnabled',
-        label: 'Tailored Experiences',
+        label: 'Disable Tailored Experiences',
         description:
           'Prevents Microsoft from using diagnostic data to offer personalized tips and ads.'
       },
       {
         id: 'RestrictImplicitTextCollection',
-        label: 'Text Collection',
+        label: 'Prevent Text Collection',
         description: 'Prevents Windows from collecting text you type to improve prediction.'
       },
       {
         id: 'RestrictImplicitInkCollection',
-        label: 'Ink Collection',
+        label: 'Prevent Ink Collection',
         description: 'Prevents Windows from collecting handwriting data.'
       },
       {
         id: 'HarvestContacts',
-        label: 'Harvest Contacts',
+        label: 'Prevent Contact Harvesting',
         description: 'Prevents Windows from scanning contacts for speech/typing personalization.'
       },
       {
         id: 'EnableActivityFeed',
-        label: 'Activity Feed',
+        label: 'Disable Activity Feed',
         description: 'Disables the "Timeline" feature.'
       },
       {
         id: 'PublishUserActivities',
-        label: 'Publish Activities',
+        label: 'Prevent Publishing Activities',
         description: 'Prevents syncing activities to the cloud.'
       },
       {
         id: 'UploadUserActivities',
-        label: 'Upload Activities',
+        label: 'Prevent Uploading Activities',
         description: 'Prevents uploading activity history.'
       },
       {
         id: 'BingSearchEnabled',
-        label: 'Bing Search',
+        label: 'Disable Bing Search',
         description: 'Disables Bing web results in the Start Menu.'
       },
       {
         id: 'CortanaConsent',
-        label: 'Cortana Consent',
+        label: 'Revoke Cortana Consent',
         description: 'Revokes consent for Cortana data collection.'
       },
       {
         id: 'AllowCrossDeviceClipboard',
-        label: 'Clipboard Sync',
+        label: 'Disable Clipboard Sync',
         description: 'Disables cloud syncing of clipboard content between devices.'
       }
     ]
@@ -124,21 +124,21 @@ export const configStructure = [
     label: 'Scheduled Tasks',
     description: 'Tasks scheduled to run periodically that collect data.',
     children: [
-      { id: 'DmClient', label: 'DmClient', description: 'Sends usage data to Microsoft.' },
+      { id: 'DmClient', label: 'Disable DmClient', description: 'Sends usage data to Microsoft.' },
       {
         id: 'DmClientOnScenarioDownload',
-        label: 'DmClient Scenario',
+        label: 'Disable DmClient Scenario',
         description: 'Related to Feedback Hub telemetry.'
       },
       {
         id: 'Consolidator',
-        label: 'CEIP Consolidator',
+        label: 'Disable CEIP Collector',
         description: 'Customer Experience Improvement Program data collector.'
       },
-      { id: 'UsbCeip', label: 'USB CEIP', description: 'Collects statistics on USB device usage.' },
+      { id: 'UsbCeip', label: 'Disable USB CEIP', description: 'Collects statistics on USB device usage.' },
       {
         id: 'QueueReporting',
-        label: 'Error Reporting',
+        label: 'Disable Error Reporting',
         description: 'Queues and sends Windows Error Reports.'
       }
     ]
@@ -150,17 +150,17 @@ export const configStructure = [
     children: [
       {
         id: 'lfsvc',
-        label: 'Geolocation Service',
+        label: 'Disable Geolocation Service',
         description: 'Monitors current location of the system.'
       },
       {
         id: 'SensorService',
-        label: 'Sensor Service',
+        label: 'Disable Sensor Service',
         description: 'Manages various sensors (GPS, etc.)'
       },
       {
         id: 'DisableLocation',
-        label: 'Global Location Disable',
+        label: 'Disable Global Location',
         description: 'Registry policy to disable all location features.'
       },
       {
@@ -175,7 +175,7 @@ export const configStructure = [
       },
       {
         id: 'LocationConsent',
-        label: 'UWP Location Consent',
+        label: 'Revoke UWP Location Consent',
         description: 'Blocks location access for Universal Windows Apps.'
       }
     ]
@@ -187,12 +187,12 @@ export const configStructure = [
     children: [
       {
         id: 'WebcamConsent',
-        label: 'Webcam Access (Registry)',
+        label: 'Revoke Webcam Access (Registry)',
         description: 'Prevents apps from accessing the webcam.'
       },
       {
         id: 'MicrophoneConsent',
-        label: 'Microphone Access (Registry)',
+        label: 'Revoke Microphone Access (Registry)',
         description: 'Prevents apps from accessing the microphone.'
       }
       // Dynamic hardware devices will be injected here at runtime
@@ -203,21 +203,21 @@ export const configStructure = [
     label: 'DNS Settings',
     description: 'Configure network interfaces to use privacy-focused DNS.',
     children: [
-      { id: 'Wi-Fi', label: 'Wi-Fi Interface', description: 'Apply secure DNS to Wi-Fi adapter.' },
+      { id: 'Wi-Fi', label: 'Enable Secure DNS for Wi-Fi', description: 'Apply secure DNS to Wi-Fi adapter.' },
       {
         id: 'Ethernet',
-        label: 'Ethernet Interface',
+        label: 'Enable Secure DNS for Ethernet',
         description: 'Apply secure DNS to Ethernet adapter.'
       },
       {
         id: 'DoH',
-        label: 'Use DoH',
+        label: 'Encrypt DNS through HTTPS',
         description:
           'Sends DNS lookups over encrypted HTTPS instead of plain text, preventing local networks from seeing or tampering with them.'
       },
       {
         id: 'DoH-Hardening',
-        label: 'DoH Hardening',
+        label: 'Enforce Encrypted DNS through HTTPS',
         description: 'Enforces strict DoH usage, preventing fallback to plain text DNS.'
       }
     ]
@@ -242,7 +242,7 @@ export const configStructure = [
       {
         id: 'block_hosts',
         label: 'Block Microsoft Hosts',
-        description: 'Redirects telemetry domains to localhost (0.0.0.0).'
+        description: 'Redirects telemetry (user data) domains to IP 0.0.0.0'
       }
     ]
   }

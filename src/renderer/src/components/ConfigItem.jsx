@@ -11,11 +11,12 @@ const ConfigItem = ({
   hasChildren,
   isExpanded,
   onExpand,
-  isChild = false
+  isChild = false,
+  disabled = false
 }) => {
   return (
     <div
-      className={`${styles.item} ${isChild ? styles.childItem : ''}`}
+      className={`${styles.item} ${isChild ? styles.childItem : ''} ${disabled ? styles.disabled : ''}`}
       onClick={hasChildren ? onExpand : undefined}
       role={hasChildren ? 'button' : undefined}
       tabIndex={hasChildren ? 0 : undefined}
@@ -45,7 +46,7 @@ const ConfigItem = ({
 
       {/* 4. Toggle */}
       <div className={styles.toggleWrapper} onClick={(e) => e.stopPropagation()}>
-        <Toggle checked={isEnabled} onChange={onToggle} />
+        <Toggle checked={isEnabled} onChange={onToggle} disabled={disabled} />
       </div>
     </div>
   )

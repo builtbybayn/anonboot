@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import SupportModal from './components/SupportModal'
 import PaymentModal from './components/PaymentModal'
 import AboutModal from './components/AboutModal'
+import LoadingModal from './components/LoadingModal'
 import { configStructure } from './data/configData'
 
 function App() {
@@ -18,6 +19,11 @@ function App() {
 
   const [pendingRequests, setPendingRequests] = useState(0)
   const [isInitialLoading, setIsInitialLoading] = useState(true)
+  const [isAppInitializing, setIsAppInitializing] = useState(true)
+  const [showLoadingModal, setShowLoadingModal] = useState(false)
+  const [loadingMessage, setLoadingMessage] = useState('')
+  const [processingItems, setProcessingItems] = useState(new Set())
+
   const [historyCounts, setHistoryCounts] = useState({ undo: 0, redo: 0 })
   const [currentSchema, setSchema] = useState(null)
 
@@ -165,7 +171,8 @@ function App() {
   }
 
   // Extracted loading logic
-  const loadState = async (forceDetect = false) => {
+  const loadState = async (forceDetect = false, message = 'Refreshing State') => {
+    setLoadingMessage(message)
     try {
       if (forceDetect) {
         await window.api.detectState()
@@ -216,27 +223,38 @@ function App() {
         setIsAdmin(adminResult)
         if (!adminResult) return
 
-        await loadState(true)
+        setIsAppInitializing(true)
+        setShowLoadingModal(true)
+        await loadState(true, 'Initializing System')
       } finally {
+        setIsAppInitializing(false)
         setIsInitialLoading(false)
+        // We don't hide the modal here automatically if we want it to stay until finished
+        // But for "Initial Loading", once loadState is done, initialization is over.
+        setShowLoadingModal(false)
       }
     }
     init()
   }, [])
 
   const handleRefresh = async () => {
-    if (pendingRequests > 0 || isInitialLoading) return
+    if (pendingRequests > 0 || isInitialLoading || isAppInitializing) return
     setPendingRequests((prev) => prev + 1)
+    setIsAppInitializing(true)
+    setShowLoadingModal(true)
     try {
-      await loadState(true)
+      await loadState(true, 'Refreshing State')
     } finally {
+      setIsAppInitializing(false)
       setPendingRequests((prev) => Math.max(0, prev - 1))
+      setShowLoadingModal(false)
     }
   }
 
   const handleUndo = async () => {
-    if (historyCounts.undo === 0) return
+    if (historyCounts.undo === 0 || isAppInitializing) return
     setPendingRequests((prev) => prev + 1)
+    setIsAppInitializing(true)
     try {
       const result = await window.api.undo()
       if (result) {
@@ -246,17 +264,19 @@ function App() {
           // Undo inverts the value: if action.value was true (Secure), we are now false (Default)
           setConfig((prev) => ({ ...prev, [result.action.id]: !result.action.value }))
         } else {
-          await loadState(true) // Fallback if no action returned
+          await loadState(true, 'Refreshing State') // Fallback if no action returned
         }
       }
     } finally {
+      setIsAppInitializing(false)
       setPendingRequests((prev) => Math.max(0, prev - 1))
     }
   }
 
   const handleRedo = async () => {
-    if (historyCounts.redo === 0) return
+    if (historyCounts.redo === 0 || isAppInitializing) return
     setPendingRequests((prev) => prev + 1)
+    setIsAppInitializing(true)
     try {
       const result = await window.api.redo()
       if (result) {
@@ -266,24 +286,30 @@ function App() {
           // Redo applies the value: if action.value was true, we are now true
           setConfig((prev) => ({ ...prev, [result.action.id]: result.action.value }))
         } else {
-          await loadState(true)
+          await loadState(true, 'Refreshing State')
         }
       }
     } finally {
+      setIsAppInitializing(false)
       setPendingRequests((prev) => Math.max(0, prev - 1))
     }
   }
 
   const handleRevertAll = async () => {
-    if (pendingRequests > 0) return
+    if (pendingRequests > 0 || isAppInitializing) return
     setPendingRequests((prev) => prev + 1)
+    setIsAppInitializing(true)
+    setShowLoadingModal(true)
     try {
+      setLoadingMessage('Reverting All Settings')
       await window.api.revertAll()
-      await loadState(true)
+      await loadState(true, 'Refreshing State')
     } catch (error) {
       console.error('Revert All failed:', error)
     } finally {
+      setIsAppInitializing(false)
       setPendingRequests((prev) => Math.max(0, prev - 1))
+      setShowLoadingModal(false)
     }
   }
 
@@ -292,6 +318,7 @@ function App() {
       setMode('custom')
       return
     }
+    if (isAppInitializing) return
 
     const newConfig = {}
     configLayout.forEach((category) => {
@@ -320,7 +347,10 @@ function App() {
     })
 
     setPendingRequests((prev) => prev + 1)
+    setIsAppInitializing(true)
+    setShowLoadingModal(true)
     try {
+      setLoadingMessage(`Applying ${newMode.charAt(0).toUpperCase() + newMode.slice(1)} Mode`)
       const promises = changes.map((item) =>
         window.api.toggleSetting(item.category, item.id, item.value)
       )
@@ -335,15 +365,26 @@ function App() {
       // Since we updated local config above, we are mostly good.
       // But verifying is safer. We can run loadState(true) here as it is a bulk action.
       // Or just loadState(true) to be safe.
-      await loadState(true)
+      await loadState(true, 'Refreshing State')
     } catch (error) {
       console.error('Error applying mode:', error)
     } finally {
+      setIsAppInitializing(false)
       setPendingRequests((prev) => Math.max(0, prev - 1))
+      setShowLoadingModal(false)
     }
   }
 
   const handleToggleItem = async (ids, value) => {
+    if (isAppInitializing) return
+
+    // Add to processing items
+    setProcessingItems((prev) => {
+      const next = new Set(prev)
+      ids.forEach((id) => next.add(id))
+      return next
+    })
+
     setConfig((prev) => {
       const next = { ...prev }
       ids.forEach((id) => {
@@ -383,6 +424,12 @@ function App() {
       console.error('Error in toggle:', error)
     } finally {
       setPendingRequests((prev) => Math.max(0, prev - 1))
+      // Remove from processing items
+      setProcessingItems((prev) => {
+        const next = new Set(prev)
+        ids.forEach((id) => next.delete(id))
+        return next
+      })
     }
   }
 
@@ -401,6 +448,8 @@ function App() {
         currentMode={mode}
         setMode={handleModeChange}
         isLoading={pendingRequests > 0 || isInitialLoading}
+        loadingMessage={loadingMessage}
+        onShowLoading={() => setShowLoadingModal(true)}
         scrollRef={scrollRef}
         onRefresh={handleRefresh}
         onUndo={handleUndo}
@@ -418,6 +467,8 @@ function App() {
               category={category}
               configState={config}
               toggleItem={handleToggleItem}
+              disabled={isAppInitializing}
+              processingItems={processingItems}
             />
           ))}
         </div>
@@ -426,6 +477,12 @@ function App() {
           onOpenAbout={() => setIsAboutOpen(true)}
         />
       </main>
+
+      <LoadingModal
+        isOpen={showLoadingModal}
+        onClose={() => setShowLoadingModal(false)}
+        message={loadingMessage}
+      />
 
       <SupportModal
         isOpen={isSupportOpen}

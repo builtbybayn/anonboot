@@ -9,7 +9,7 @@ const Footer = ({ onOpenSupport, onOpenAbout }) => {
         <div className={styles.divider}></div>
         <div className={styles.linksRow}>
           <a
-            href="https://github.com/builtbybayn"
+            href="https://github.com/builtbybayn/anonboot"
             target="_blank"
             rel="noreferrer"
             className={styles.link}

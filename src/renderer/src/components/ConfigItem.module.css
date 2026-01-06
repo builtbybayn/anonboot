@@ -17,6 +17,22 @@
   background-color: var(--color-bg-row-hover);
 }
 
+/* Disabled State Visuals */
+/* We allow interaction (cursor stays pointer from .item), but we restore the "disabled" look on hover */
+
+.item.disabled:hover {
+  background-color: var(--color-bg-row); /* Prevent highlight */
+}
+
+/* Dim content on row hover (including Toggle) to show "processing/locked" visual state */
+.item.disabled:hover .label,
+.item.disabled:hover .chevronBtn,
+.item.disabled:hover :global(.tooltip-container),
+.item.disabled:hover .toggleWrapper {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+
 .childItem {
   height: var(--spacing-child-row-height);
   /* 48px */

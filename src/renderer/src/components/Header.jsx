@@ -10,6 +10,8 @@ const Header = ({
   currentMode,
   setMode,
   isLoading,
+  loadingMessage,
+  onShowLoading,
   scrollRef,
   onRefresh,
   onUndo,
@@ -87,14 +89,18 @@ const Header = ({
           className={styles.statusContainer}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
+          onClick={() => isLoading && onShowLoading && onShowLoading()}
+          style={{ cursor: isLoading ? 'pointer' : 'default' }}
         >
           {isLoading ? (
             <SpinnerIcon className={styles.spinner} />
           ) : (
             <CheckIcon className={styles.checkmark} />
           )}
-          {showTooltip && !isLoading && (
-            <div className={styles.tooltip}>Your information is up to date.</div>
+          {showTooltip && (
+            <div className={styles.tooltip}>
+              {isLoading ? loadingMessage || 'Loading...' : 'Your information is up to date.'}
+            </div>
           )}
         </div>
 
