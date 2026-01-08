@@ -1,5 +1,5 @@
 appId: com.anonboot.app
-productName: anonboot-v1
+productName: anonBOOT
 directories:
   buildResources: build
 files:
@@ -14,7 +14,7 @@ extraResources:
   - from: src/main/core/scripts
     to: scripts
 win:
-  executableName: anonboot-v1
+  executableName: anonBOOT
   requestedExecutionLevel: requireAdministrator
 nsis:
   oneClick: false
