@@ -51,11 +51,11 @@ export async function writeCapture(json, processName, filePath) {
 
   const resultJson = JSON.stringify(allCaptures)
 
-  console.log(`Attempting to write data to : ${filePath}`)
+  // console.log(`Attempting to write data to : ${filePath}`)
   try {
     await writeFile(filePath, resultJson, { flag: 'w', encoding: 'utf8' })
 
-    console.log(`Succesfully wrote to ${filePath}`)
+    // console.log(`Succesfully wrote to ${filePath}`)
   } catch (error) {
     console.error(`Error: Failed to write capture file: ${error.message}`)
     throw error
@@ -77,7 +77,7 @@ export async function writeBulkCapture(newDataObject, filePath) {
 
   try {
     await writeFile(filePath, resultJson, { flag: 'w', encoding: 'utf8' })
-    console.log(`Succesfully wrote bulk data to ${filePath}`)
+    // console.log(`Succesfully wrote bulk data to ${filePath}`)
   } catch (error) {
     console.error(`Error: Failed to write bulk capture file: ${error.message}`)
     throw error

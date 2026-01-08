@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.anonboot.app
 productName: anonboot-v1
 directories:
   buildResources: build

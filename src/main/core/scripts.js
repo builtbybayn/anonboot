@@ -114,7 +114,7 @@ async function apply(serviceName, scriptPath, args = []) {
   try {
     output = await runScript(scriptPath, args)
     let stdout = output.stdout
-    console.log(stdout)
+    // console.log(stdout)
   } catch (error) {
     console.error(`Error running apply script for ${serviceName}: `, error)
     throw error

@@ -20,14 +20,13 @@ const LoadingModal = ({ isOpen, onClose, message = 'Initializing...' }) => {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Loading...</h2>
+          <div className={styles.titleGroup}>
+            <h2 className={styles.title}>Loading...</h2>
+            <SpinnerIcon className={styles.spinner} />
+          </div>
           <button className={styles.closeButton} onClick={onClose} aria-label="Close">
             <XIcon className={styles.closeIcon} />
           </button>
-        </div>
-
-        <div className={styles.spinnerContainer}>
-          <SpinnerIcon className={styles.spinner} />
         </div>
 
         <div className={styles.statusSection}>

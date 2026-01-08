@@ -43,7 +43,7 @@ export function runScript(file, args = []) {
 
       if (code == 0) {
         if (stdout != '' || stderr != '') {
-          console.log(`\nFull output:\nstdout: \n${result.stdout}\n\nstderr: ${result.stderr}`)
+          // console.log(`\nFull output:\nstdout: \n${result.stdout}\n\nstderr: ${result.stderr}`)
         }
         resolve(result)
       } else {

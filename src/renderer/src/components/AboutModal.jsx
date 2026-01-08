@@ -32,7 +32,7 @@ const AboutModal = ({ isOpen, onClose }) => {
               centralized place to toggle all of the settings that put your privacy at risk.
             </p>
             <p className={styles.paragraph}>
-              Theres many sneaky ways which your data&apos;s collected on windows. Every way that I
+              There&apos;s many sneaky ways which your data&apos;s collected on windows. Every way that I
               found it possible to leak any relevant data, I added a way to disable within this app.
             </p>
           </div>
