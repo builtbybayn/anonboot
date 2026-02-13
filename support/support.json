@@ -1,0 +1,90 @@
+{
+    "version": 1,
+    "updatedAt": "2026-01-04T00:00:00Z",
+    "crypto": [
+        {
+            "assetId": "btc",
+            "label": "Bitcoin",
+            "networks": [
+                {
+                    "networkId": "bitcoin",
+                    "address": "bc1qkv3sddpae9kycqa3qmj0sdd6uzsgl6cx93779a"
+                }
+            ]
+        },
+        {
+            "assetId": "eth",
+            "label": "Ethereum",
+            "networks": [
+                {
+                    "networkId": "ethereum",
+                    "address": "0xC71254A32C74d88A5f7D62F30F3F00508d0b9930"
+                }
+            ]
+        },
+        {
+            "assetId": "sol",
+            "label": "Solana",
+            "networks": [
+                {
+                    "networkId": "solana",
+                    "address": "8WzqgrELLpb8ZUVYdMXvFpjkLGqjbGDb1vQsEyPSaV2B"
+                }
+            ]
+        },
+        {
+            "assetId": "usdt",
+            "label": "USDT",
+            "networks": [
+                {
+                    "networkId": "ethereum",
+                    "label": "USDT on Ethereum",
+                    "address": "0xC71254A32C74d88A5f7D62F30F3F00508d0b9930"
+                },
+                {
+                    "networkId": "solana",
+                    "label": "USDT on Solana",
+                    "address": "8WzqgrELLpb8ZUVYdMXvFpjkLGqjbGDb1vQsEyPSaV2B"
+                }
+            ]
+        },
+        {
+            "assetId": "usdc",
+            "label": "USDC",
+            "networks": [
+                {
+                    "networkId": "ethereum",
+                    "label": "USDC on Ethereum",
+                    "address": "0xC71254A32C74d88A5f7D62F30F3F00508d0b9930"
+                },
+                {
+                    "networkId": "solana",
+                    "label": "USDC on Solana",
+                    "address": "8WzqgrELLpb8ZUVYdMXvFpjkLGqjbGDb1vQsEyPSaV2B"
+                }
+            ]
+        },
+        {
+            "assetId": "ltc",
+            "label": "Litecoin",
+            "networks": [
+                {
+                    "networkId": "litecoin",
+                    "address": "LMXXmSPX7zbGSWMz7P4P11e5dNMqKxnK9i"
+                }
+            ]
+        }
+    ],
+    "traditional": [
+        {
+            "methodId": "card",
+            "label": "Debit/Credit Card",
+            "url": "https://buy.stripe.com/7sYbJ14J0d4G6qS4ZT77O00"
+        },
+        {
+            "methodId": "wallets",
+            "label": "Apple/Google Pay",
+            "url": "https://buy.stripe.com/7sYbJ14J0d4G6qS4ZT77O00"
+        }
+    ]
+}
